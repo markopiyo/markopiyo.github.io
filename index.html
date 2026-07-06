@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mark Opiyo — Full-Stack Developer & AI Solutions</title>
+<meta name="description" content="Mark Opiyo builds websites, web applications, and AI-powered features for businesses. React, Next.js, Node.js.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-deep:#0B1F3A;
+    --navy-mid:#12304F;
+    --cyan-line:#7FB6D9;
+    --cyan-bright:#4FA8D8;
+    --paper:#F6F7F9;
+    --paper-line:#DCE2E8;
+    --ink:#12233A;
+    --slate:#5C7080;
+    --amber:#D98E2B;
+    --amber-dark:#B5731E;
+    --radius:4px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.55;
+  }
+
+  h1,h2,h3{
+    font-family:'Space Grotesk',sans-serif;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  .mono{
+    font-family:'JetBrains Mono',monospace;
+  }
+
+  a{color:inherit;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:50;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 40px;
+    background:rgba(11,31,58,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(127,182,217,0.25);
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#fff;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:15px;
+  }
+  .logo-mark{
+    width:30px;height:30px;
+    border:1.5px solid var(--cyan-line);
+    border-radius:3px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--cyan-line);
+  }
+  .nav-links{
+    display:flex;
+    gap:32px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:0.04em;
+  }
+  .nav-links a{
+    text-decoration:none;
+    color:#C9D8E3;
+    padding-bottom:3px;
+    border-bottom:1px solid transparent;
+    transition:color .15s, border-color .15s;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{
+    color:#fff;
+    border-color:var(--amber);
+  }
+  .nav-cta{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--navy-deep);
+    background:var(--amber);
+    padding:8px 16px;
+    border-radius:3px;
+    text-decoration:none;
+    font-weight:500;
+  }
+  .nav-cta:hover, .nav-cta:focus-visible{background:var(--amber-dark);}
+
+  @media (max-width:820px){
+    .nav-links{display:none;}
+    nav{padding:16px 20px;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    background:var(--navy-deep);
+    color:#fff;
+    padding:150px 40px 100px;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(127,182,217,0.09) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(127,182,217,0.09) 1px, transparent 1px);
+    background-size:38px 38px;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 30%, black 40%, transparent 90%);
+    pointer-events:none;
+  }
+  .hero-inner{
+    position:relative;
+    max-width:700px;
+    margin:0 auto;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:0.12em;
+    color:var(--cyan-line);
+    text-transform:uppercase;
+    margin-bottom:18px;
+    display:block;
+  }
+  .hero h1{
+    font-size:clamp(32px, 4.4vw, 54px);
+    font-weight:600;
+    line-height:1.08;
+    margin-bottom:22px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--amber);
+  }
+  .hero p.lede{
+    font-size:17px;
+    color:#C9D8E3;
+    max-width:480px;
+    margin-bottom:32px;
+  }
+  .hero-tags{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+  }
+  .hero-tags span{
+    border:1px solid rgba(127,182,217,0.4);
+    color:var(--cyan-line);
+    padding:6px 12px;
+    border-radius:3px;
+  }
+
+  @media (max-width:900px){
+    .hero{padding:120px 22px 70px;}
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{padding:90px 40px;}
+  .section-inner{max-width:1180px; margin:0 auto;}
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    margin-bottom:48px;
+    border-bottom:1px solid var(--paper-line);
+    padding-bottom:18px;
+  }
+  .section-num{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--amber);
+    font-size:13px;
+  }
+  .section-head h2{
+    font-size:28px;
+    font-weight:600;
+  }
+  @media (max-width:820px){ section{padding:64px 22px;} }
+
+  /* ---------- CAPABILITIES ---------- */
+  .cap-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+  .cap-card{
+    background:#fff;
+    border:1px solid var(--paper-line);
+    border-radius:var(--radius);
+    padding:28px 24px;
+    position:relative;
+  }
+  .cap-card .sheet-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--slate);
+    margin-bottom:16px;
+    display:block;
+  }
+  .cap-card h3{
+    font-size:19px;
+    margin-bottom:10px;
+    font-weight:600;
+  }
+  .cap-card p{
+    font-size:14.5px;
+    color:var(--slate);
+    margin:0;
+  }
+  @media (max-width:900px){ .cap-grid{grid-template-columns:1fr;} }
+
+  /* ---------- STACK ---------- */
+  .stack-wrap{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+  }
+  .stack-col h3{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--slate);
+    margin-bottom:16px;
+    font-weight:500;
+  }
+  .chip-row{display:flex; flex-wrap:wrap; gap:10px;}
+  .chip{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    background:#fff;
+    border:1px solid var(--paper-line);
+    padding:8px 14px;
+    border-radius:3px;
+    color:var(--ink);
+  }
+  @media (max-width:820px){ .stack-wrap{grid-template-columns:1fr;} }
+
+  /* ---------- WORK ---------- */
+  .work-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+  .work-card{
+    background:#fff;
+    border:1px solid var(--paper-line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+  .work-thumb{
+    aspect-ratio:16/10;
+    background:var(--navy-deep);
+    background-image:linear-gradient(rgba(127,182,217,0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(127,182,217,0.12) 1px, transparent 1px);
+    background-size:20px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--cyan-line);
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:.05em;
+  }
+  .work-body{padding:22px;}
+  .work-body .tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    color:var(--amber-dark);
+    text-transform:uppercase;
+    letter-spacing:.06em;
+  }
+  .work-body h3{
+    font-size:17px;
+    margin:8px 0 8px;
+    font-weight:600;
+  }
+  .work-body p{
+    font-size:14px;
+    color:var(--slate);
+    margin:0 0 16px;
+  }
+  .work-tools{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    color:var(--slate);
+  }
+  .work-tools span{
+    border:1px solid var(--paper-line);
+    padding:3px 8px;
+    border-radius:2px;
+  }
+  @media (max-width:900px){ .work-grid{grid-template-columns:1fr;} }
+  .placeholder-note{
+    margin-top:28px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--slate);
+    border-left:2px solid var(--amber);
+    padding:10px 16px;
+    background:#fff;
+  }
+
+  /* ---------- CONTACT / TITLE BLOCK ---------- */
+  .contact-section{
+    background:var(--navy-deep);
+    color:#fff;
+  }
+  .contact-section .section-head{border-bottom-color:rgba(127,182,217,0.25);}
+  .contact-section .section-head h2{color:#fff;}
+  .title-block{
+    border:1px solid rgba(127,182,217,0.4);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .tb-row{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+  }
+  .tb-cell{
+    padding:20px 22px;
+    border-right:1px solid rgba(127,182,217,0.25);
+    border-bottom:1px solid rgba(127,182,217,0.25);
+  }
+  .tb-cell:last-child{border-right:none;}
+  .tb-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--cyan-line);
+    display:block;
+    margin-bottom:6px;
+  }
+  .tb-value{font-size:14.5px;}
+  .tb-value a{text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.3);}
+  .tb-value a:hover{border-color:var(--amber); color:var(--amber);}
+  .tb-full{
+    grid-column:1 / -1;
+    padding:28px 22px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:18px;
+  }
+  .stamp{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--amber);
+    border:1.5px solid var(--amber);
+    border-radius:3px;
+    padding:8px 16px;
+    transform:rotate(-3deg);
+    letter-spacing:.06em;
+  }
+  @media (max-width:820px){
+    .tb-row{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:520px){
+    .tb-row{grid-template-columns:1fr;}
+    .tb-cell{border-right:none;}
+  }
+
+  footer{
+    padding:24px 40px;
+    background:var(--navy-deep);
+    color:var(--slate);
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    text-align:center;
+    border-top:1px solid rgba(127,182,217,0.15);
+  }
+
+  :focus-visible{outline:2px solid var(--amber); outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><span class="logo-mark">MO</span> MARK OPIYO</div>
+  <div class="nav-links">
+    <a href="#capabilities">Capabilities</a>
+    <a href="#stack">Stack</a>
+    <a href="#work">Work</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a class="nav-cta" href="mailto:markopiyo2@gmail.com">Start a project</a>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="eyebrow">Full-Stack Developer · Nairobi</span>
+      <h1>I build the <em>systems</em><br>your business runs on.</h1>
+      <p class="lede">Websites that represent your brand properly, web apps that run daily operations, and AI features that remove manual work — planned, built, and shipped end to end.</p>
+      <div class="hero-tags">
+        <span>REACT / NEXT.JS</span>
+        <span>NODE.JS</span>
+        <span>TYPESCRIPT</span>
+        <span>AI INTEGRATIONS</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="capabilities">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2>What I build</h2>
+    </div>
+    <div class="cap-grid">
+      <div class="cap-card">
+        <span class="sheet-tag">SHEET 01/03 — WEBSITE</span>
+        <h3>Business websites</h3>
+        <p>Marketing sites and landing pages that load fast, rank properly, and are easy for you to update without calling a developer every time copy changes.</p>
+      </div>
+      <div class="cap-card">
+        <span class="sheet-tag">SHEET 02/03 — WEB APP</span>
+        <h3>Web applications</h3>
+        <p>Customer portals, internal dashboards, and SaaS products — built with proper auth, data modeling, and an interface your team will actually want to use.</p>
+      </div>
+      <div class="cap-card">
+        <span class="sheet-tag">SHEET 03/03 — AI SYSTEM</span>
+        <h3>AI-powered features</h3>
+        <p>Chat assistants, document processing, and workflow automation layered into your existing product using OpenAI, Claude, or a custom pipeline.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stack" style="background:#fff; border-top:1px solid var(--paper-line); border-bottom:1px solid var(--paper-line);">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2>Stack</h2>
+    </div>
+    <div class="stack-wrap">
+      <div class="stack-col">
+        <h3>Core</h3>
+        <div class="chip-row">
+          <span class="chip">React</span>
+          <span class="chip">Next.js</span>
+          <span class="chip">TypeScript</span>
+          <span class="chip">Node.js</span>
+          <span class="chip">Tailwind CSS</span>
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">MongoDB</span>
+        </div>
+      </div>
+      <div class="stack-col">
+        <h3>Infrastructure &amp; also works with</h3>
+        <div class="chip-row">
+          <span class="chip">AWS</span>
+          <span class="chip">Vercel</span>
+          <span class="chip">Docker</span>
+          <span class="chip">OpenAI API</span>
+          <span class="chip">Claude API</span>
+          <span class="chip">LangChain</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2>Case files</h2>
+    </div>
+    <div class="work-grid">
+      <div class="work-card">
+        <div class="work-thumb">[ PROJECT SCREENSHOT ]</div>
+        <div class="work-body">
+          <span class="tag">Website</span>
+          <h3>Business website — placeholder</h3>
+          <p>Replace with a real client site: what the business needed, what you built, and the outcome (load time, leads, etc).</p>
+          <div class="work-tools"><span>Next.js</span><span>Tailwind</span><span>Vercel</span></div>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="work-thumb">[ PROJECT SCREENSHOT ]</div>
+        <div class="work-body">
+          <span class="tag">Web App</span>
+          <h3>Dashboard / SaaS — placeholder</h3>
+          <p>Replace with a real app: the problem it solves, the stack, and a link to a live demo or repo.</p>
+          <div class="work-tools"><span>React</span><span>Node.js</span><span>PostgreSQL</span></div>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="work-thumb">[ PROJECT SCREENSHOT ]</div>
+        <div class="work-body">
+          <span class="tag">AI System</span>
+          <h3>AI assistant / automation — placeholder</h3>
+          <p>Replace with a real AI feature: what it automates, which model/API it uses, and measurable impact.</p>
+          <div class="work-tools"><span>OpenAI API</span><span>LangChain</span><span>Node.js</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="placeholder-note">These three cards are placeholders — swap in real projects, screenshots, and links when you have them ready.</p>
+  </div>
+</section>
+
+<section id="contact" class="contact-section">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2>Get in touch</h2>
+    </div>
+    <div class="title-block">
+      <div class="tb-row">
+        <div class="tb-cell">
+          <span class="tb-label">Drawn by</span>
+          <span class="tb-value">Mark Opiyo</span>
+        </div>
+        <div class="tb-cell">
+          <span class="tb-label">Email</span>
+          <span class="tb-value"><a href="mailto:markopiyo2@gmail.com">markopiyo2@gmail.com</a></span>
+        </div>
+        <div class="tb-cell">
+          <span class="tb-label">GitHub</span>
+          <span class="tb-value"><a href="https://github.com/markopiyo" target="_blank" rel="noopener">github.com/markopiyo</a></span>
+        </div>
+        <div class="tb-cell">
+          <span class="tb-label">LinkedIn</span>
+          <span class="tb-value"><a href="#" target="_blank" rel="noopener">Add your LinkedIn URL</a></span>
+        </div>
+      </div>
+      <div class="tb-row">
+        <div class="tb-full">
+          <div>
+            <span class="tb-label">Availability</span>
+            <span class="tb-value">Open to freelance &amp; contract work</span>
+          </div>
+          <span class="stamp">OPEN FOR WORK</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © <span id="year"></span> MARK OPIYO — BUILT WITH REACT &amp; NODE.JS, DEPLOYED FROM SCRATCH
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
