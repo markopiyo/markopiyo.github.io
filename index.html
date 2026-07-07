@@ -1,737 +1,1024 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mark Opiyo — Full-Stack Developer & AI Solutions</title>
-<meta name="description" content="Mark Opiyo builds websites, web applications, and AI-powered features for businesses. React, Next.js, Node.js.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --navy-deep:#0B1F3A;
-    --navy-mid:#12304F;
-    --cyan-line:#7FB6D9;
-    --cyan-bright:#4FA8D8;
-    --paper:#F6F7F9;
-    --paper-line:#DCE2E8;
-    --ink:#12233A;
-    --slate:#5C7080;
-    --amber:#D98E2B;
-    --amber-dark:#B5731E;
-    --radius:4px;
-  }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mark Opiyo — Full-Stack Developer & AI Solutions</title>
+    <meta
+      name="description"
+      content="Mark Opiyo builds websites, web applications, and AI-powered features for businesses. React, Next.js, Node.js."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy-deep: #0b1f3a;
+        --navy-mid: #12304f;
+        --cyan-line: #7fb6d9;
+        --cyan-bright: #4fa8d8;
+        --paper: #f6f7f9;
+        --paper-line: #dce2e8;
+        --ink: #12233a;
+        --slate: #5c7080;
+        --amber: #d98e2b;
+        --amber-dark: #b5731e;
+        --radius: 4px;
+      }
 
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
-  }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        * {
+          animation-duration: 0.001ms !important;
+          transition-duration: 0.001ms !important;
+        }
+      }
 
-  body{
-    margin:0;
-    font-family:'Inter',sans-serif;
-    color:var(--ink);
-    background:var(--paper);
-    line-height:1.55;
-  }
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        color: var(--ink);
+        background: var(--paper);
+        line-height: 1.55;
+      }
 
-  h1,h2,h3{
-    font-family:'Space Grotesk',sans-serif;
-    margin:0;
-    letter-spacing:-0.01em;
-  }
+      h1,
+      h2,
+      h3 {
+        font-family: "Space Grotesk", sans-serif;
+        margin: 0;
+        letter-spacing: -0.01em;
+      }
 
-  .mono{
-    font-family:'JetBrains Mono',monospace;
-  }
+      .mono {
+        font-family: "JetBrains Mono", monospace;
+      }
 
-  a{color:inherit;}
+      a {
+        color: inherit;
+      }
 
-  /* ---------- NAV ---------- */
-  nav{
-    position:fixed;
-    top:0; left:0; right:0;
-    z-index:50;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:18px 40px;
-    background:rgba(11,31,58,0.92);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid rgba(127,182,217,0.25);
-  }
-  .logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    color:#fff;
-    font-family:'Space Grotesk',sans-serif;
-    font-weight:600;
-    font-size:15px;
-  }
-  .logo-mark{
-    width:30px;height:30px;
-    border:1.5px solid var(--cyan-line);
-    border-radius:3px;
-    display:flex;align-items:center;justify-content:center;
-    font-family:'JetBrains Mono',monospace;
-    font-size:11px;
-    color:var(--cyan-line);
-  }
-  .nav-links{
-    display:flex;
-    gap:32px;
-    font-family:'JetBrains Mono',monospace;
-    font-size:12.5px;
-    letter-spacing:0.04em;
-  }
-  .nav-links a{
-    text-decoration:none;
-    color:#C9D8E3;
-    padding-bottom:3px;
-    border-bottom:1px solid transparent;
-    transition:color .15s, border-color .15s;
-  }
-  .nav-links a:hover, .nav-links a:focus-visible{
-    color:#fff;
-    border-color:var(--amber);
-  }
-  .nav-cta{
-    font-family:'JetBrains Mono',monospace;
-    font-size:12px;
-    color:var(--navy-deep);
-    background:var(--amber);
-    padding:8px 16px;
-    border-radius:3px;
-    text-decoration:none;
-    font-weight:500;
-  }
-  .nav-cta:hover, .nav-cta:focus-visible{background:var(--amber-dark);}
+      /* ---------- NAV ---------- */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 40px;
+        background: rgba(11, 31, 58, 0.92);
+        backdrop-filter: blur(6px);
+        border-bottom: 1px solid rgba(127, 182, 217, 0.25);
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #fff;
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 600;
+        font-size: 15px;
+      }
+      .logo-mark {
+        width: 30px;
+        height: 30px;
+        border: 1.5px solid var(--cyan-line);
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--cyan-line);
+      }
+      .nav-links {
+        display: flex;
+        gap: 32px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12.5px;
+        letter-spacing: 0.04em;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: #c9d8e3;
+        padding-bottom: 3px;
+        border-bottom: 1px solid transparent;
+        transition:
+          color 0.15s,
+          border-color 0.15s;
+      }
+      .nav-links a:hover,
+      .nav-links a:focus-visible {
+        color: #fff;
+        border-color: var(--amber);
+      }
+      .nav-cta {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--navy-deep);
+        background: var(--amber);
+        padding: 8px 16px;
+        border-radius: 3px;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .nav-cta:hover,
+      .nav-cta:focus-visible {
+        background: var(--amber-dark);
+      }
 
-  .nav-burger{
-    display:none;
-    background:none;
-    border:1px solid rgba(127,182,217,0.4);
-    border-radius:3px;
-    width:38px;
-    height:34px;
-    padding:0;
-    cursor:pointer;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    gap:5px;
-  }
-  .nav-burger span{
-    display:block;
-    width:18px;
-    height:1.5px;
-    background:var(--cyan-line);
-    transition:transform .2s, opacity .2s;
-  }
-  .nav-burger.is-open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
-  .nav-burger.is-open span:nth-child(2){opacity:0;}
-  .nav-burger.is-open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+      .nav-burger {
+        display: none;
+        background: none;
+        border: 1px solid rgba(127, 182, 217, 0.4);
+        border-radius: 3px;
+        width: 38px;
+        height: 34px;
+        padding: 0;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .nav-burger span {
+        display: block;
+        width: 18px;
+        height: 1.5px;
+        background: var(--cyan-line);
+        transition:
+          transform 0.2s,
+          opacity 0.2s;
+      }
+      .nav-burger.is-open span:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+      }
+      .nav-burger.is-open span:nth-child(2) {
+        opacity: 0;
+      }
+      .nav-burger.is-open span:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
+      }
 
-  .nav-mobile-panel{
-    position:fixed;
-    top:0; right:0;
-    height:100vh;
-    width:min(78vw, 300px);
-    background:var(--navy-deep);
-    border-left:1px solid rgba(127,182,217,0.25);
-    z-index:60;
-    padding:90px 28px 28px;
-    display:flex;
-    flex-direction:column;
-    gap:26px;
-    font-family:'JetBrains Mono',monospace;
-    font-size:14px;
-    letter-spacing:0.04em;
-    transform:translateX(100%);
-    transition:transform .25s ease;
-  }
-  .nav-mobile-panel.is-open{transform:translateX(0);}
-  .nav-mobile-panel a{
-    text-decoration:none;
-    color:#C9D8E3;
-    padding-bottom:4px;
-    border-bottom:1px solid transparent;
-  }
-  .nav-mobile-panel a:hover, .nav-mobile-panel a:focus-visible{
-    color:#fff;
-    border-color:var(--amber);
-  }
-  .nav-mobile-panel .nav-cta{
-    display:inline-block;
-    width:fit-content;
-    margin-top:10px;
-  }
-  .nav-scrim{
-    position:fixed;
-    inset:0;
-    background:rgba(11,31,58,0.55);
-    z-index:55;
-    opacity:0;
-    pointer-events:none;
-    transition:opacity .25s ease;
-  }
-  .nav-scrim.is-open{
-    opacity:1;
-    pointer-events:auto;
-  }
+      .nav-mobile-panel {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: min(78vw, 300px);
+        background: var(--navy-deep);
+        border-left: 1px solid rgba(127, 182, 217, 0.25);
+        z-index: 60;
+        padding: 90px 28px 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 26px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 14px;
+        letter-spacing: 0.04em;
+        transform: translateX(100%);
+        transition: transform 0.25s ease;
+      }
+      .nav-mobile-panel.is-open {
+        transform: translateX(0);
+      }
+      .nav-mobile-panel a {
+        text-decoration: none;
+        color: #c9d8e3;
+        padding-bottom: 4px;
+        border-bottom: 1px solid transparent;
+      }
+      .nav-mobile-panel a:hover,
+      .nav-mobile-panel a:focus-visible {
+        color: #fff;
+        border-color: var(--amber);
+      }
+      .nav-mobile-panel .nav-cta {
+        display: inline-block;
+        width: fit-content;
+        margin-top: 10px;
+      }
+      .nav-scrim {
+        position: fixed;
+        inset: 0;
+        background: rgba(11, 31, 58, 0.55);
+        z-index: 55;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+      }
+      .nav-scrim.is-open {
+        opacity: 1;
+        pointer-events: auto;
+      }
 
-  @media (max-width:820px){
-    .nav-links{display:none;}
-    .nav > .nav-cta{display:none;}
-    .nav-burger{display:flex;}
-    nav{padding:16px 20px;}
-  }
+      @media (max-width: 820px) {
+        .nav-links {
+          display: none;
+        }
+        .nav > .nav-cta {
+          display: none;
+        }
+        .nav-burger {
+          display: flex;
+        }
+        nav {
+          padding: 16px 20px;
+        }
+      }
 
-  /* ---------- HERO ---------- */
-  .hero{
-    position:relative;
-    background:var(--navy-deep);
-    color:#fff;
-    padding:150px 40px 100px;
-    overflow:hidden;
-  }
-  .hero::before{
-    content:"";
-    position:absolute; inset:0;
-    background-image:
-      linear-gradient(rgba(127,182,217,0.09) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(127,182,217,0.09) 1px, transparent 1px);
-    background-size:38px 38px;
-    mask-image:radial-gradient(ellipse 80% 60% at 50% 30%, black 40%, transparent 90%);
-    pointer-events:none;
-  }
-  .hero-inner{
-    position:relative;
-    max-width:700px;
-    margin:0 auto;
-  }
-  .eyebrow{
-    font-family:'JetBrains Mono',monospace;
-    font-size:12.5px;
-    letter-spacing:0.12em;
-    color:var(--cyan-line);
-    text-transform:uppercase;
-    margin-bottom:18px;
-    display:block;
-  }
-  .hero h1{
-    font-size:clamp(32px, 4.4vw, 54px);
-    font-weight:600;
-    line-height:1.08;
-    margin-bottom:22px;
-  }
-  .hero h1 em{
-    font-style:normal;
-    color:var(--amber);
-  }
-  .hero p.lede{
-    font-size:17px;
-    color:#C9D8E3;
-    max-width:480px;
-    margin-bottom:32px;
-  }
-  .hero-tags{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    font-family:'JetBrains Mono',monospace;
-    font-size:12px;
-  }
-  .hero-tags span{
-    border:1px solid rgba(127,182,217,0.4);
-    color:var(--cyan-line);
-    padding:6px 12px;
-    border-radius:3px;
-  }
+      /* ---------- HERO ---------- */
+      .hero {
+        position: relative;
+        background: var(--navy-deep);
+        color: #fff;
+        padding: 150px 40px 100px;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(127, 182, 217, 0.09) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(127, 182, 217, 0.09) 1px, transparent 1px);
+        background-size: 38px 38px;
+        mask-image: radial-gradient(
+          ellipse 80% 60% at 50% 30%,
+          black 40%,
+          transparent 90%
+        );
+        pointer-events: none;
+      }
+      .hero-inner {
+        position: relative;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+      .eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12.5px;
+        letter-spacing: 0.12em;
+        color: var(--cyan-line);
+        text-transform: uppercase;
+        margin-bottom: 18px;
+        display: block;
+      }
+      .hero h1 {
+        font-size: clamp(32px, 4.4vw, 54px);
+        font-weight: 600;
+        line-height: 1.08;
+        margin-bottom: 22px;
+      }
+      .hero h1 em {
+        font-style: normal;
+        color: var(--amber);
+      }
+      .hero p.lede {
+        font-size: 17px;
+        color: #c9d8e3;
+        max-width: 480px;
+        margin-bottom: 32px;
+      }
+      .hero-tags {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+      }
+      .hero-tags span {
+        border: 1px solid rgba(127, 182, 217, 0.4);
+        color: var(--cyan-line);
+        padding: 6px 12px;
+        border-radius: 3px;
+      }
 
-  @media (max-width:900px){
-    .hero{padding:120px 22px 70px;}
-  }
+      @media (max-width: 900px) {
+        .hero {
+          padding: 120px 22px 70px;
+        }
+      }
 
-  /* ---------- SECTION SHARED ---------- */
-  section{padding:90px 40px;}
-  .section-inner{max-width:1180px; margin:0 auto;}
-  .section-head{
-    display:flex;
-    align-items:baseline;
-    gap:16px;
-    margin-bottom:48px;
-    border-bottom:1px solid var(--paper-line);
-    padding-bottom:18px;
-  }
-  .section-num{
-    font-family:'JetBrains Mono',monospace;
-    color:var(--amber);
-    font-size:13px;
-  }
-  .section-head h2{
-    font-size:28px;
-    font-weight:600;
-  }
-  @media (max-width:820px){ section{padding:64px 22px;} }
+      /* ---------- SECTION SHARED ---------- */
+      section {
+        padding: 90px 40px;
+      }
+      .section-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+      }
+      .section-head {
+        display: flex;
+        align-items: baseline;
+        gap: 16px;
+        margin-bottom: 48px;
+        border-bottom: 1px solid var(--paper-line);
+        padding-bottom: 18px;
+      }
+      .section-num {
+        font-family: "JetBrains Mono", monospace;
+        color: var(--amber);
+        font-size: 13px;
+      }
+      .section-head h2 {
+        font-size: 28px;
+        font-weight: 600;
+      }
+      @media (max-width: 820px) {
+        section {
+          padding: 64px 22px;
+        }
+      }
 
-  /* ---------- CAPABILITIES ---------- */
-  .cap-grid{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:24px;
-  }
-  .cap-card{
-    background:#fff;
-    border:1px solid var(--paper-line);
-    border-radius:var(--radius);
-    padding:28px 24px;
-    position:relative;
-  }
-  .cap-card .sheet-tag{
-    font-family:'JetBrains Mono',monospace;
-    font-size:11px;
-    color:var(--slate);
-    margin-bottom:16px;
-    display:block;
-  }
-  .cap-card h3{
-    font-size:19px;
-    margin-bottom:10px;
-    font-weight:600;
-  }
-  .cap-card p{
-    font-size:14.5px;
-    color:var(--slate);
-    margin:0;
-  }
-  @media (max-width:900px){ .cap-grid{grid-template-columns:1fr;} }
+      /* ---------- CAPABILITIES ---------- */
+      .cap-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .cap-card {
+        background: #fff;
+        border: 1px solid var(--paper-line);
+        border-radius: var(--radius);
+        padding: 28px 24px;
+        position: relative;
+      }
+      .cap-card .sheet-tag {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--slate);
+        margin-bottom: 16px;
+        display: block;
+      }
+      .cap-card h3 {
+        font-size: 19px;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+      .cap-card p {
+        font-size: 14.5px;
+        color: var(--slate);
+        margin: 0;
+      }
+      @media (max-width: 900px) {
+        .cap-grid {
+          grid-template-columns: 1fr;
+        }
+      }
 
-  /* ---------- WORK ---------- */
-  .work-grid{
-    display:grid;
-    grid-template-columns:repeat(2, 1fr);
-    gap:24px;
-  }
-  .work-card{
-    background:#fff;
-    border:1px solid var(--paper-line);
-    border-radius:var(--radius);
-    overflow:hidden;
-    display:flex;
-    flex-direction:column;
-  }
-  .work-thumb{
-    aspect-ratio:16/10;
-    background:var(--navy-deep);
-    background-image:linear-gradient(rgba(127,182,217,0.12) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(127,182,217,0.12) 1px, transparent 1px);
-    background-size:20px 20px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:var(--cyan-line);
-    font-family:'JetBrains Mono',monospace;
-    font-size:12px;
-    letter-spacing:.05em;
-  }
-  .work-body{padding:22px;}
-  .work-body .tag{
-    font-family:'JetBrains Mono',monospace;
-    font-size:10.5px;
-    color:var(--amber-dark);
-    text-transform:uppercase;
-    letter-spacing:.06em;
-  }
-  .work-body h3{
-    font-size:17px;
-    margin:8px 0 8px;
-    font-weight:600;
-  }
-  .work-body p{
-    font-size:14px;
-    color:var(--slate);
-    margin:0 0 16px;
-  }
-  .work-tools{
-    display:flex;
-    flex-wrap:wrap;
-    gap:6px;
-    font-family:'JetBrains Mono',monospace;
-    font-size:10.5px;
-    color:var(--slate);
-  }
-  .work-tools span{
-    border:1px solid var(--paper-line);
-    padding:3px 8px;
-    border-radius:2px;
-  }
-  @media (max-width:700px){ .work-grid{grid-template-columns:1fr;} }
-  .placeholder-note{
-    margin-top:28px;
-    font-family:'JetBrains Mono',monospace;
-    font-size:12px;
-    color:var(--slate);
-    border-left:2px solid var(--amber);
-    padding:10px 16px;
-    background:#fff;
-  }
+      /* ---------- WORK ---------- */
+      .work-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+      .work-card {
+        background: #fff;
+        border: 1px solid var(--paper-line);
+        border-radius: var(--radius);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      .work-thumb {
+        aspect-ratio: 16/10;
+        background: var(--navy-deep);
+        background-image:
+          linear-gradient(rgba(127, 182, 217, 0.12) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(127, 182, 217, 0.12) 1px, transparent 1px);
+        background-size: 20px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--cyan-line);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.05em;
+      }
+      .work-body {
+        padding: 22px;
+      }
+      .work-body .tag {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 10.5px;
+        color: var(--amber-dark);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .work-body h3 {
+        font-size: 17px;
+        margin: 8px 0 8px;
+        font-weight: 600;
+      }
+      .work-body p {
+        font-size: 14px;
+        color: var(--slate);
+        margin: 0 0 16px;
+      }
+      .work-tools {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 10.5px;
+        color: var(--slate);
+      }
+      .work-tools span {
+        border: 1px solid var(--paper-line);
+        padding: 3px 8px;
+        border-radius: 2px;
+      }
+      @media (max-width: 700px) {
+        .work-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .placeholder-note {
+        margin-top: 28px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--slate);
+        border-left: 2px solid var(--amber);
+        padding: 10px 16px;
+        background: #fff;
+      }
 
-  /* ---------- REVIEWS ---------- */
-  .review-section{
-    background:#fff;
-    border-top:1px solid var(--paper-line);
-    border-bottom:1px solid var(--paper-line);
-  }
-  .review-grid{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:24px;
-  }
-  .review-card{
-    background:var(--paper);
-    border:1px solid var(--paper-line);
-    border-radius:var(--radius);
-    padding:26px 24px;
-    display:flex;
-    flex-direction:column;
-    gap:16px;
-  }
-  .review-stars{
-    font-family:'JetBrains Mono',monospace;
-    font-size:13px;
-    color:var(--amber);
-    letter-spacing:2px;
-  }
-  .review-quote{
-    font-size:14.5px;
-    color:var(--ink);
-    margin:0;
-    flex-grow:1;
-  }
-  .review-author{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    border-top:1px solid var(--paper-line);
-    padding-top:14px;
-  }
-  .review-name{
-    font-size:13.5px;
-    font-weight:600;
-  }
-  .review-role{
-    font-family:'JetBrains Mono',monospace;
-    font-size:11px;
-    color:var(--slate);
-  }
-  @media (max-width:900px){ .review-grid{grid-template-columns:1fr;} }
+      /* ---------- REVIEWS ---------- */
+      .review-section {
+        background: #fff;
+        border-top: 1px solid var(--paper-line);
+        border-bottom: 1px solid var(--paper-line);
+      }
+      .review-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .review-card {
+        background: var(--paper);
+        border: 1px solid var(--paper-line);
+        border-radius: var(--radius);
+        padding: 26px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .review-stars {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 13px;
+        color: var(--amber);
+        letter-spacing: 2px;
+      }
+      .review-quote {
+        font-size: 14.5px;
+        color: var(--ink);
+        margin: 0;
+        flex-grow: 1;
+      }
+      .review-author {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid var(--paper-line);
+        padding-top: 14px;
+      }
+      .review-name {
+        font-size: 13.5px;
+        font-weight: 600;
+      }
+      .review-role {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--slate);
+      }
+      @media (max-width: 900px) {
+        .review-grid {
+          grid-template-columns: 1fr;
+        }
+      }
 
-  /* ---------- CONTACT / TITLE BLOCK ---------- */
-  .contact-section{
-    background:var(--navy-deep);
-    color:#fff;
-  }
-  .contact-section .section-head{border-bottom-color:rgba(127,182,217,0.25);}
-  .contact-section .section-head h2{color:#fff;}
-  .title-block{
-    border:1px solid rgba(127,182,217,0.4);
-    border-radius:var(--radius);
-    overflow:hidden;
-  }
-  .tb-row{
-    display:grid;
-    grid-template-columns:repeat(4, 1fr);
-  }
-  .tb-cell{
-    padding:20px 22px;
-    border-right:1px solid rgba(127,182,217,0.25);
-    border-bottom:1px solid rgba(127,182,217,0.25);
-  }
-  .tb-cell:last-child{border-right:none;}
-  .tb-label{
-    font-family:'JetBrains Mono',monospace;
-    font-size:10px;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    color:var(--cyan-line);
-    display:block;
-    margin-bottom:6px;
-  }
-  .tb-value{font-size:14.5px;}
-  .tb-value a{text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.3);}
-  .tb-value a:hover{border-color:var(--amber); color:var(--amber);}
-  .tb-full{
-    grid-column:1 / -1;
-    padding:28px 22px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:18px;
-  }
-  .stamp{
-    font-family:'JetBrains Mono',monospace;
-    font-size:12px;
-    color:var(--amber);
-    border:1.5px solid var(--amber);
-    border-radius:3px;
-    padding:8px 16px;
-    transform:rotate(-3deg);
-    letter-spacing:.06em;
-  }
-  @media (max-width:820px){
-    .tb-row{grid-template-columns:1fr 1fr;}
-  }
-  @media (max-width:520px){
-    .tb-row{grid-template-columns:1fr;}
-    .tb-cell{border-right:none;}
-  }
+      /* ---------- CONTACT / TITLE BLOCK ---------- */
+      .contact-section {
+        background: var(--navy-deep);
+        color: #fff;
+      }
+      .contact-section .section-head {
+        border-bottom-color: rgba(127, 182, 217, 0.25);
+      }
+      .contact-section .section-head h2 {
+        color: #fff;
+      }
+      .title-block {
+        border: 1px solid rgba(127, 182, 217, 0.4);
+        border-radius: var(--radius);
+        overflow: hidden;
+      }
+      .tb-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .tb-cell {
+        padding: 20px 22px;
+        border-right: 1px solid rgba(127, 182, 217, 0.25);
+        border-bottom: 1px solid rgba(127, 182, 217, 0.25);
+      }
+      .tb-cell:last-child {
+        border-right: none;
+      }
+      .tb-label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--cyan-line);
+        display: block;
+        margin-bottom: 6px;
+      }
+      .tb-value {
+        font-size: 14.5px;
+      }
+      .tb-value a {
+        text-decoration: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      }
+      .tb-value a:hover {
+        border-color: var(--amber);
+        color: var(--amber);
+      }
+      .tb-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .tb-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 34px;
+        height: 34px;
+        border: 1px solid rgba(127, 182, 217, 0.4);
+        border-radius: 3px;
+        color: var(--cyan-line);
+        transition:
+          color 0.15s,
+          background 0.15s,
+          border-color 0.15s;
+      }
+      .tb-icon svg {
+        width: 17px;
+        height: 17px;
+        display: block;
+      }
+      .tb-icon:hover,
+      .tb-icon:focus-visible {
+        color: var(--navy-deep);
+        background: var(--amber);
+        border-color: var(--amber);
+      }
+      .tb-full {
+        grid-column: 1 / -1;
+        padding: 28px 22px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 18px;
+      }
+      .stamp {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--amber);
+        border: 1.5px solid var(--amber);
+        border-radius: 3px;
+        padding: 8px 16px;
+        transform: rotate(-3deg);
+        letter-spacing: 0.06em;
+      }
+      @media (max-width: 820px) {
+        .tb-row {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 520px) {
+        .tb-row {
+          grid-template-columns: 1fr;
+        }
+        .tb-cell {
+          border-right: none;
+        }
+      }
 
-  footer{
-    padding:24px 40px;
-    background:var(--navy-deep);
-    color:var(--slate);
-    font-family:'JetBrains Mono',monospace;
-    font-size:11.5px;
-    text-align:center;
-    border-top:1px solid rgba(127,182,217,0.15);
-  }
+      footer {
+        padding: 24px 40px;
+        background: var(--navy-deep);
+        color: var(--slate);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11.5px;
+        text-align: center;
+        border-top: 1px solid rgba(127, 182, 217, 0.15);
+      }
 
-  :focus-visible{outline:2px solid var(--amber); outline-offset:2px;}
-</style>
-</head>
-<body>
-
-<nav class="nav">
-  <div class="logo"><span class="logo-mark">MO</span> Mark Opiyo</div>
-  <div class="nav-links">
-    <a href="#capabilities">Services</a>
-    <a href="#work">Work</a>
-    <a href="#reviews">Reviews</a>
-    <a href="#contact">Contact</a>
-  </div>
-  <a class="nav-cta" href="#contact">Get in touch</a>
-  <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="navMobilePanel">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<div class="nav-scrim" id="navScrim"></div>
-<div class="nav-mobile-panel" id="navMobilePanel">
-  <a href="#capabilities">Services</a>
-  <a href="#work">Work</a>
-  <a href="#reviews">Reviews</a>
-  <a href="#contact">Contact</a>
-  <a class="nav-cta" href="#contact">Get in touch</a>
-</div>
-
-<header class="hero">
-  <div class="hero-inner">
-    <div>
-      <span class="eyebrow">Full-Stack Software Engineer</span>
-      <h1>I build the <em>systems</em><br>your business runs on.</h1>
-      <p class="lede">Websites that represent your brand properly, web apps that run daily operations, and AI features that remove manual work — planned, built, and shipped end to end.</p>
-      <div class="hero-tags">
-        <span>REACT / NEXT.JS</span>
-        <span>NODE.JS</span>
-        <span>TYPESCRIPT</span>
-        <span>LARAVEL</span>
-        <span>POSTGRESQL</span>
-        <span>AI INTEGRATIONS</span>
+      :focus-visible {
+        outline: 2px solid var(--amber);
+        outline-offset: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="logo"><span class="logo-mark">MO</span> Mark Opiyo</div>
+      <div class="nav-links">
+        <a href="#capabilities">Services</a>
+        <a href="#work">Work</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
       </div>
+      <a class="nav-cta" href="#contact">Get in touch</a>
+      <button
+        class="nav-burger"
+        id="navBurger"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="navMobilePanel"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <div class="nav-scrim" id="navScrim"></div>
+    <div class="nav-mobile-panel" id="navMobilePanel">
+      <a href="#capabilities">Services</a>
+      <a href="#work">Work</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+      <a class="nav-cta" href="#contact">Get in touch</a>
     </div>
-  </div>
-</header>
 
-<section id="capabilities">
-  <div class="section-inner">
-    <div class="section-head">
-      <h2>What I build</h2>
-    </div>
-    <div class="cap-grid">
-      <div class="cap-card">
-        <h3>Websites</h3>
-        <p>Sites and landing pages that load fast, rank properly, and are easy for you to update without calling a developer every time copy changes.</p>
-      </div>
-      <div class="cap-card">
-        <h3>Web applications</h3>
-        <p>Customer portals, internal dashboards, and SaaS products — built with proper auth, data modeling, and an interface your team will actually want to use.</p>
-      </div>
-      <div class="cap-card">
-        <h3>AI-powered features</h3>
-        <p>Chat assistants, document processing, and workflow automation layered into your existing product using OpenAI, Claude, or a custom pipeline.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="work" style="background:#fff; border-top:1px solid var(--paper-line); border-bottom:1px solid var(--paper-line);">
-  <div class="section-inner">
-    <div class="section-head">
-      <h2>Case files</h2>
-    </div>
-    <div class="work-grid">
-      <div class="work-card">
-        <div class="work-thumb">[ PROJECT SCREENSHOT ]</div>
-        <div class="work-body">
-          <span class="tag">Website</span>
-          <h3>Business website — placeholder</h3>
-          <p>Replace with a real client site: what the business needed, what you built, and the outcome (load time, leads, etc).</p>
-          <div class="work-tools"><span>Next.js</span><span>Tailwind</span><span>Vercel</span></div>
-        </div>
-      </div>
-      <div class="work-card">
-        <div class="work-thumb">[ PROJECT SCREENSHOT ]</div>
-        <div class="work-body">
-          <span class="tag">E-Commerce</span>
-          <h3>Online store — placeholder</h3>
-          <p>Replace with a real storefront build: catalog size, payment/checkout flow, and the sales or conversion impact.</p>
-          <div class="work-tools"><span>Next.js</span><span>Stripe</span><span>PostgreSQL</span></div>
-        </div>
-      </div>
-      <div class="work-card">
-        <div class="work-thumb">[ PROJECT SCREENSHOT ]</div>
-        <div class="work-body">
-          <span class="tag">SaaS</span>
-          <h3>SaaS product — placeholder</h3>
-          <p>Replace with a real app: the problem it solves, the stack, and a link to a live demo or repo.</p>
-          <div class="work-tools"><span>React</span><span>Node.js</span><span>PostgreSQL</span></div>
-        </div>
-      </div>
-      <div class="work-card">
-        <div class="work-thumb">[ PROJECT SCREENSHOT ]</div>
-        <div class="work-body">
-          <span class="tag">AI System</span>
-          <h3>AI assistant / automation — placeholder</h3>
-          <p>Replace with a real AI feature: what it automates, which model/API it uses, and measurable impact.</p>
-          <div class="work-tools"><span>OpenAI API</span><span>LangChain</span><span>Node.js</span></div>
-        </div>
-      </div>
-    </div>
-    <p class="placeholder-note">These four cards are placeholders — swap in real projects, screenshots, and links when you have them ready.</p>
-  </div>
-</section>
-
-<section id="reviews" class="review-section">
-  <div class="section-inner">
-    <div class="section-head">
-      <h2>What clients say</h2>
-    </div>
-    <div class="review-grid">
-      <div class="review-card">
-        <span class="review-stars">★★★★★</span>
-        <p class="review-quote">Placeholder review — swap in a real quote from a client about how the project turned out, timelines, and communication along the way.</p>
-        <div class="review-author">
-          <div>
-            <div class="review-name">Client Name</div>
-            <div class="review-role">Founder, Company</div>
+    <header class="hero">
+      <div class="hero-inner">
+        <div>
+          <span class="eyebrow">Full-Stack Software Engineer</span>
+          <h1>I build the <em>systems</em><br />your business runs on.</h1>
+          <p class="lede">
+            Websites that represent your brand properly, web apps that run daily
+            operations, and AI features that remove manual work — planned,
+            built, and shipped end to end.
+          </p>
+          <div class="hero-tags">
+            <span>REACT / NEXT.JS</span>
+            <span>NODE.JS</span>
+            <span>TYPESCRIPT</span>
+            <span>LARAVEL</span>
+            <span>POSTGRESQL</span>
+            <span>AI INTEGRATIONS</span>
           </div>
         </div>
       </div>
-      <div class="review-card">
-        <span class="review-stars">★★★★★</span>
-        <p class="review-quote">Placeholder review — swap in a real quote focused on a specific result: faster load times, more signups, less manual work.</p>
-        <div class="review-author">
-          <div>
-            <div class="review-name">Client Name</div>
-            <div class="review-role">Operations Lead, Company</div>
+    </header>
+
+    <section id="capabilities">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>What I build</h2>
+        </div>
+        <div class="cap-grid">
+          <div class="cap-card">
+            <h3>Websites</h3>
+            <p>
+              Sites and landing pages that load fast, rank properly, and are
+              easy for you to update without calling a developer every time copy
+              changes.
+            </p>
+          </div>
+          <div class="cap-card">
+            <h3>Web applications</h3>
+            <p>
+              Customer portals, internal dashboards, and SaaS products — built
+              with proper auth, data modeling, and an interface your team will
+              actually want to use.
+            </p>
+          </div>
+          <div class="cap-card">
+            <h3>AI-powered features</h3>
+            <p>
+              Chat assistants, document processing, and workflow automation
+              layered into your existing product using OpenAI, Claude, or a
+              custom pipeline.
+            </p>
           </div>
         </div>
       </div>
-      <div class="review-card">
-        <span class="review-stars">★★★★★</span>
-        <p class="review-quote">Placeholder review — swap in a real quote about working style: responsiveness, clarity, or handling a tricky requirement well.</p>
-        <div class="review-author">
-          <div>
-            <div class="review-name">Client Name</div>
-            <div class="review-role">Product Manager, Company</div>
+    </section>
+
+    <section
+      id="work"
+      style="
+        background: #fff;
+        border-top: 1px solid var(--paper-line);
+        border-bottom: 1px solid var(--paper-line);
+      "
+    >
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>Case files</h2>
+        </div>
+        <div class="work-grid">
+          <div class="work-card">
+            <div class="work-thumb">[ PROJECT SCREENSHOT ]</div>
+            <div class="work-body">
+              <span class="tag">Website</span>
+              <h3>Business website — placeholder</h3>
+              <p>
+                Replace with a real client site: what the business needed, what
+                you built, and the outcome (load time, leads, etc).
+              </p>
+              <div class="work-tools">
+                <span>Next.js</span><span>Tailwind</span><span>Vercel</span>
+              </div>
+            </div>
+          </div>
+          <div class="work-card">
+            <div class="work-thumb">[ PROJECT SCREENSHOT ]</div>
+            <div class="work-body">
+              <span class="tag">E-Commerce</span>
+              <h3>Online store — placeholder</h3>
+              <p>
+                Replace with a real storefront build: catalog size,
+                payment/checkout flow, and the sales or conversion impact.
+              </p>
+              <div class="work-tools">
+                <span>Next.js</span><span>Stripe</span><span>PostgreSQL</span>
+              </div>
+            </div>
+          </div>
+          <div class="work-card">
+            <div class="work-thumb">[ PROJECT SCREENSHOT ]</div>
+            <div class="work-body">
+              <span class="tag">SaaS</span>
+              <h3>SaaS product — placeholder</h3>
+              <p>
+                Replace with a real app: the problem it solves, the stack, and a
+                link to a live demo or repo.
+              </p>
+              <div class="work-tools">
+                <span>React</span><span>Node.js</span><span>PostgreSQL</span>
+              </div>
+            </div>
+          </div>
+          <div class="work-card">
+            <div class="work-thumb">[ PROJECT SCREENSHOT ]</div>
+            <div class="work-body">
+              <span class="tag">AI System</span>
+              <h3>AI assistant / automation — placeholder</h3>
+              <p>
+                Replace with a real AI feature: what it automates, which
+                model/API it uses, and measurable impact.
+              </p>
+              <div class="work-tools">
+                <span>OpenAI API</span><span>LangChain</span
+                ><span>Node.js</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="placeholder-note">
+          These four cards are placeholders — swap in real projects,
+          screenshots, and links when you have them ready.
+        </p>
+      </div>
+    </section>
+
+    <section id="reviews" class="review-section">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>What clients say</h2>
+        </div>
+        <div class="review-grid">
+          <div class="review-card">
+            <span class="review-stars">★★★★★</span>
+            <p class="review-quote">
+              Placeholder review — swap in a real quote from a client about how
+              the project turned out, timelines, and communication along the
+              way.
+            </p>
+            <div class="review-author">
+              <div>
+                <div class="review-name">Client Name</div>
+                <div class="review-role">Founder, Company</div>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <span class="review-stars">★★★★★</span>
+            <p class="review-quote">
+              Placeholder review — swap in a real quote focused on a specific
+              result: faster load times, more signups, less manual work.
+            </p>
+            <div class="review-author">
+              <div>
+                <div class="review-name">Client Name</div>
+                <div class="review-role">Operations Lead, Company</div>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <span class="review-stars">★★★★★</span>
+            <p class="review-quote">
+              Placeholder review — swap in a real quote about working style:
+              responsiveness, clarity, or handling a tricky requirement well.
+            </p>
+            <div class="review-author">
+              <div>
+                <div class="review-name">Client Name</div>
+                <div class="review-role">Product Manager, Company</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="placeholder-note">
+          These three reviews are placeholders — replace with real client
+          testimonials as you collect them.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>Get in touch</h2>
+        </div>
+        <div class="title-block">
+          <div class="tb-row">
+            <div class="tb-cell">
+              <span class="tb-label">Phone</span>
+              <div class="tb-item">
+                <a
+                  class="tb-icon"
+                  href="tel:+254700277652"
+                  aria-label="Call Mark Opiyo"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+                    />
+                  </svg>
+                </a>
+                <span class="tb-value">+254700277652</span>
+              </div>
+            </div>
+            <div class="tb-cell">
+              <span class="tb-label">Email</span>
+              <div class="tb-item">
+                <a
+                  class="tb-icon"
+                  href="mailto:markopiyo2@gmail.com"
+                  aria-label="Email Mark Opiyo"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M2.4 5.4h19.2a1 1 0 0 1 1 1v11.2a1 1 0 0 1-1 1H2.4a1 1 0 0 1-1-1V6.4a1 1 0 0 1 1-1z"
+                    />
+                    <path d="M1.6 6.2 12 13.6l10.4-7.4" />
+                  </svg>
+                </a>
+                <span class="tb-value"
+                  ><a href="mailto:markopiyo2@gmail.com">Send Email</a></span
+                >
+              </div>
+            </div>
+            <div class="tb-cell">
+              z
+              <span class="tb-label">GitHub</span>
+              <div class="tb-item">
+                <a
+                  class="tb-icon"
+                  href="https://github.com/markopiyo"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Mark Opiyo on GitHub"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.4 7.86 10.93.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.87-1.54-3.87-1.54-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.75 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.58.23 2.75.11 3.04.74.8 1.18 1.83 1.18 3.08 0 4.41-2.7 5.38-5.27 5.67.42.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.2.67.8.56A10.99 10.99 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"
+                    />
+                  </svg>
+                </a>
+                <span class="tb-value"
+                  ><a
+                    href="https://github.com/markopiyo"
+                    target="_blank"
+                    rel="noopener"
+                    >GitHub</a
+                  ></span
+                >
+              </div>
+            </div>
+            <div class="tb-cell">
+              <span class="tb-label">LinkedIn</span>
+              <div class="tb-item">
+                <a
+                  class="tb-icon"
+                  href="https://www.linkedin.com/in/mark-opiyo-5b0253b9/"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Mark Opiyo on LinkedIn"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"
+                    />
+                  </svg>
+                </a>
+                <span class="tb-value"
+                  ><a
+                    href="https://www.linkedin.com/in/mark-opiyo-5b0253b9/"
+                    target="_blank"
+                    rel="noopener"
+                    >LinkedIn Profile</a
+                  ></span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="tb-row">
+            <div class="tb-full">
+              <div>
+                <span class="tb-label">Availability</span>
+                <span class="tb-value"
+                  >Open to Freelance &amp; Contract Work</span
+                >
+              </div>
+              <span class="stamp">OPEN FOR WORK</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <p class="placeholder-note">These three reviews are placeholders — replace with real client testimonials as you collect them.</p>
-  </div>
-</section>
+    </section>
 
-<section id="contact" class="contact-section">
-  <div class="section-inner">
-    <div class="section-head">
-      <h2>Get in touch</h2>
-    </div>
-    <div class="title-block">
-      <div class="tb-row">
-        <div class="tb-cell">
-          <span class="tb-label">Phone</span>
-          <span class="tb-value">+254700277652</span>
-        </div>
-        <div class="tb-cell">
-          <span class="tb-label">Email</span>
-          <span class="tb-value"><a href="mailto:markopiyo2@gmail.com">markopiyo2@gmail.com</a></span>
-        </div>
-        <div class="tb-cell">
-          <span class="tb-label">GitHub</span>
-          <span class="tb-value"><a href="https://github.com/markopiyo" target="_blank" rel="noopener">github.com/markopiyo</a></span>
-        </div>
-        <div class="tb-cell">
-          <span class="tb-label">LinkedIn</span>
-          <span class="tb-value"><a href="https://www.linkedin.com/in/mark-opiyo-5b0253b9/" target="_blank" rel="noopener">LinkedIn</a></span>
-        </div>
-      </div>
-      <div class="tb-row">
-        <div class="tb-full">
-          <div>
-            <span class="tb-label">Availability</span>
-            <span class="tb-value">Open to freelance &amp; contract work</span>
-          </div>
-          <span class="stamp">OPEN FOR WORK</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    <footer>© <span id="year"></span> Mark Opiyo</footer>
 
-<footer>
-  © <span id="year"></span> Mark Opiyo
-</footer>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
 
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+      const navBurger = document.getElementById("navBurger");
+      const navPanel = document.getElementById("navMobilePanel");
+      const navScrim = document.getElementById("navScrim");
 
-  const navBurger = document.getElementById('navBurger');
-  const navPanel = document.getElementById('navMobilePanel');
-  const navScrim = document.getElementById('navScrim');
+      function openNav() {
+        navPanel.classList.add("is-open");
+        navScrim.classList.add("is-open");
+        navBurger.classList.add("is-open");
+        navBurger.setAttribute("aria-expanded", "true");
+        navBurger.setAttribute("aria-label", "Close menu");
+      }
+      function closeNav() {
+        navPanel.classList.remove("is-open");
+        navScrim.classList.remove("is-open");
+        navBurger.classList.remove("is-open");
+        navBurger.setAttribute("aria-expanded", "false");
+        navBurger.setAttribute("aria-label", "Open menu");
+      }
 
-  function openNav(){
-    navPanel.classList.add('is-open');
-    navScrim.classList.add('is-open');
-    navBurger.classList.add('is-open');
-    navBurger.setAttribute('aria-expanded', 'true');
-    navBurger.setAttribute('aria-label', 'Close menu');
-  }
-  function closeNav(){
-    navPanel.classList.remove('is-open');
-    navScrim.classList.remove('is-open');
-    navBurger.classList.remove('is-open');
-    navBurger.setAttribute('aria-expanded', 'false');
-    navBurger.setAttribute('aria-label', 'Open menu');
-  }
-
-  navBurger.addEventListener('click', () => {
-    navPanel.classList.contains('is-open') ? closeNav() : openNav();
-  });
-  navScrim.addEventListener('click', closeNav);
-  navPanel.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', closeNav);
-  });
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeNav();
-  });
-</script>
-
-</body>
+      navBurger.addEventListener("click", () => {
+        navPanel.classList.contains("is-open") ? closeNav() : openNav();
+      });
+      navScrim.addEventListener("click", closeNav);
+      navPanel.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", closeNav);
+      });
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeNav();
+      });
+    </script>
+  </body>
 </html>
