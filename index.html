@@ -1,1016 +1,1073 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mark Opiyo — Full-Stack Developer & AI Solutions</title>
-    <meta
-      name="description"
-      content="Mark Opiyo builds websites, web applications, and AI-powered features for businesses. React, Next.js, Node.js."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      :root {
-        --navy-deep: #0b1f3a;
-        --navy-mid: #12304f;
-        --cyan-line: #7fb6d9;
-        --cyan-bright: #4fa8d8;
-        --paper: #f6f7f9;
-        --paper-line: #dce2e8;
-        --ink: #12233a;
-        --slate: #5c7080;
-        --amber: #d98e2b;
-        --amber-dark: #b5731e;
-        --radius: 4px;
-      }
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mark Opiyo | Fullstack Developer — Nairobi</title>
+<meta name="description" content="Mark Opiyo — freelance fullstack developer in Nairobi. Web development, web maintenance, software development, and AI integrations.">
 
-      * {
-        box-sizing: border-box;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-        * {
-          animation-duration: 0.001ms !important;
-          transition-duration: 0.001ms !important;
-        }
-      }
+<!-- Google Fonts: Space Grotesk (display/tech), Inter (body), JetBrains Mono (code accents) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-      body {
-        margin: 0;
-        font-family: "Inter", sans-serif;
-        color: var(--ink);
-        background: var(--paper);
-        line-height: 1.55;
-      }
+<style>
+  /* ============================
+     TOKENS — design system
+     ============================ */
+  :root{
+    --bg:            #0A0E17;
+    --bg-raised:     #111827;
+    --bg-card:       #141B2C;
+    --border:        #232C40;
+    --border-soft:   #1A2233;
+    --text-primary:  #E7ECF3;
+    --text-secondary:#8B96AB;
+    --text-muted:    #5C6883;
+    --accent:        #F2B84B;   /* amber — primary CTA / highlight */
+    --accent-dim:    #4A3B1E;
+    --accent-2:      #4FD1C5;   /* teal — secondary accent, used sparingly */
+    --accent-2-dim:  #143936;
+    --danger:        #E2665A;
 
-      h1,
-      h2,
-      h3 {
-        font-family: "Space Grotesk", sans-serif;
-        margin: 0;
-        letter-spacing: -0.01em;
-      }
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body:    'Inter', sans-serif;
+    --font-mono:    'JetBrains Mono', monospace;
 
-      .mono {
-        font-family: "JetBrains Mono", monospace;
-      }
+    --radius: 10px;
+    --radius-lg: 16px;
+    --max-w: 1120px;
+  }
 
-      a {
-        color: inherit;
-      }
+  *{ box-sizing: border-box; margin:0; padding:0; }
 
-      /* ---------- NAV ---------- */
-      nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 50;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 18px 40px;
-        background: rgba(11, 31, 58, 0.92);
-        backdrop-filter: blur(6px);
-        border-bottom: 1px solid rgba(127, 182, 217, 0.25);
-      }
-      .logo {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        color: #fff;
-        font-family: "Space Grotesk", sans-serif;
-        font-weight: 600;
-        font-size: 15px;
-      }
-      .logo-mark {
-        width: 30px;
-        height: 30px;
-        border: 1.5px solid var(--cyan-line);
-        border-radius: 3px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: "JetBrains Mono", monospace;
-        font-size: 11px;
-        color: var(--cyan-line);
-      }
-      .nav-links {
-        display: flex;
-        gap: 32px;
-        font-family: "JetBrains Mono", monospace;
-        font-size: 12.5px;
-        letter-spacing: 0.04em;
-      }
-      .nav-links a {
-        text-decoration: none;
-        color: #c9d8e3;
-        padding-bottom: 3px;
-        border-bottom: 1px solid transparent;
-        transition:
-          color 0.15s,
-          border-color 0.15s;
-      }
-      .nav-links a:hover,
-      .nav-links a:focus-visible {
-        color: #fff;
-        border-color: var(--amber);
-      }
-      .nav-cta {
-        font-family: "JetBrains Mono", monospace;
-        font-size: 12px;
-        color: var(--navy-deep);
-        background: var(--amber);
-        padding: 8px 16px;
-        border-radius: 3px;
-        text-decoration: none;
-        font-weight: 500;
-      }
-      .nav-cta:hover,
-      .nav-cta:focus-visible {
-        background: var(--amber-dark);
-      }
+  html{ scroll-behavior: smooth; }
 
-      .nav-burger {
-        display: none;
-        background: none;
-        border: 1px solid rgba(127, 182, 217, 0.4);
-        border-radius: 3px;
-        width: 38px;
-        height: 34px;
-        padding: 0;
-        cursor: pointer;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        gap: 5px;
-      }
-      .nav-burger span {
-        display: block;
-        width: 18px;
-        height: 1.5px;
-        background: var(--cyan-line);
-        transition:
-          transform 0.2s,
-          opacity 0.2s;
-      }
-      .nav-burger.is-open span:nth-child(1) {
-        transform: translateY(6.5px) rotate(45deg);
-      }
-      .nav-burger.is-open span:nth-child(2) {
-        opacity: 0;
-      }
-      .nav-burger.is-open span:nth-child(3) {
-        transform: translateY(-6.5px) rotate(-45deg);
-      }
+  body{
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
 
-      .nav-mobile-panel {
-        position: fixed;
-        top: 0;
-        right: 0;
-        height: 100vh;
-        width: min(78vw, 300px);
-        background: var(--navy-deep);
-        border-left: 1px solid rgba(127, 182, 217, 0.25);
-        z-index: 60;
-        padding: 90px 28px 28px;
-        display: flex;
-        flex-direction: column;
-        gap: 26px;
-        font-family: "JetBrains Mono", monospace;
-        font-size: 14px;
-        letter-spacing: 0.04em;
-        transform: translateX(100%);
-        transition: transform 0.25s ease;
-      }
-      .nav-mobile-panel.is-open {
-        transform: translateX(0);
-      }
-      .nav-mobile-panel a {
-        text-decoration: none;
-        color: #c9d8e3;
-        padding-bottom: 4px;
-        border-bottom: 1px solid transparent;
-      }
-      .nav-mobile-panel a:hover,
-      .nav-mobile-panel a:focus-visible {
-        color: #fff;
-        border-color: var(--amber);
-      }
-      .nav-mobile-panel .nav-cta {
-        display: inline-block;
-        width: fit-content;
-        margin-top: 10px;
-      }
-      .nav-scrim {
-        position: fixed;
-        inset: 0;
-        background: rgba(11, 31, 58, 0.55);
-        z-index: 55;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.25s ease;
-      }
-      .nav-scrim.is-open {
-        opacity: 1;
-        pointer-events: auto;
-      }
+  img{ max-width:100%; display:block; }
 
-      @media (max-width: 820px) {
-        .nav-links {
-          display: none;
-        }
-        .nav > .nav-cta {
-          display: none;
-        }
-        .nav-burger {
-          display: flex;
-        }
-        nav {
-          padding: 16px 20px;
-        }
-      }
+  a{ color: inherit; text-decoration:none; }
 
-      /* ---------- HERO ---------- */
-      .hero {
-        position: relative;
-        background: var(--navy-deep);
-        color: #fff;
-        padding: 150px 40px 100px;
-        overflow: hidden;
-      }
-      .hero::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background-image:
-          linear-gradient(rgba(127, 182, 217, 0.09) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(127, 182, 217, 0.09) 1px, transparent 1px);
-        background-size: 38px 38px;
-        mask-image: radial-gradient(
-          ellipse 80% 60% at 50% 30%,
-          black 40%,
-          transparent 90%
-        );
-        pointer-events: none;
-      }
-      .hero-inner {
-        position: relative;
-        max-width: 700px;
-        margin: 0 auto;
-      }
-      .eyebrow {
-        font-family: "JetBrains Mono", monospace;
-        font-size: 12.5px;
-        letter-spacing: 0.12em;
-        color: var(--cyan-line);
-        text-transform: uppercase;
-        margin-bottom: 18px;
-        display: block;
-      }
-      .hero h1 {
-        font-size: clamp(32px, 4.4vw, 54px);
-        font-weight: 600;
-        line-height: 1.08;
-        margin-bottom: 22px;
-      }
-      .hero h1 em {
-        font-style: normal;
-        color: var(--amber);
-      }
-      .hero p.lede {
-        font-size: 17px;
-        color: #c9d8e3;
-        max-width: 480px;
-        margin-bottom: 32px;
-      }
-      .hero-tags {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        font-family: "JetBrains Mono", monospace;
-        font-size: 12px;
-      }
-      .hero-tags span {
-        border: 1px solid rgba(127, 182, 217, 0.4);
-        color: var(--cyan-line);
-        padding: 6px 12px;
-        border-radius: 3px;
-      }
+  ::selection{ background: var(--accent-dim); color: var(--accent); }
 
-      @media (max-width: 900px) {
-        .hero {
-          padding: 120px 22px 70px;
-        }
-      }
+  /* subtle scrollbar */
+  ::-webkit-scrollbar{ width:10px; }
+  ::-webkit-scrollbar-track{ background: var(--bg); }
+  ::-webkit-scrollbar-thumb{ background: var(--border); border-radius: 8px; }
 
-      /* ---------- SECTION SHARED ---------- */
-      section {
-        padding: 90px 40px;
-      }
-      .section-inner {
-        max-width: 1180px;
-        margin: 0 auto;
-      }
-      .section-head {
-        display: flex;
-        align-items: baseline;
-        gap: 16px;
-        margin-bottom: 48px;
-        border-bottom: 1px solid var(--paper-line);
-        padding-bottom: 18px;
-      }
-      .section-num {
-        font-family: "JetBrains Mono", monospace;
-        color: var(--amber);
-        font-size: 13px;
-      }
-      .section-head h2 {
-        font-size: 28px;
-        font-weight: 600;
-      }
-      @media (max-width: 820px) {
-        section {
-          padding: 64px 22px;
-        }
-      }
+  :focus-visible{
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
 
-      /* ---------- CAPABILITIES ---------- */
-      .cap-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-      }
-      .cap-card {
-        background: #fff;
-        border: 1px solid var(--paper-line);
-        border-radius: var(--radius);
-        padding: 28px 24px;
-        position: relative;
-      }
-      .cap-card .sheet-tag {
-        font-family: "JetBrains Mono", monospace;
-        font-size: 11px;
-        color: var(--slate);
-        margin-bottom: 16px;
-        display: block;
-      }
-      .cap-card h3 {
-        font-size: 19px;
-        margin-bottom: 10px;
-        font-weight: 600;
-      }
-      .cap-card p {
-        font-size: 14.5px;
-        color: var(--slate);
-        margin: 0;
-      }
-      @media (max-width: 900px) {
-        .cap-grid {
-          grid-template-columns: 1fr;
-        }
-      }
+  .wrap{
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
 
-      /* ---------- WORK ---------- */
-      .work-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
-      }
-      .work-card {
-        background: #fff;
-        border: 1px solid var(--paper-line);
-        border-radius: var(--radius);
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-      }
-      .work-thumb {
-        aspect-ratio: 16/10;
-        background: var(--navy-deep);
-        background-image:
-          linear-gradient(rgba(127, 182, 217, 0.12) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(127, 182, 217, 0.12) 1px, transparent 1px);
-        background-size: 20px 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--cyan-line);
-        font-family: "JetBrains Mono", monospace;
-        font-size: 12px;
-        letter-spacing: 0.05em;
-      }
-      .work-body {
-        padding: 22px;
-      }
-      .work-body .tag {
-        font-family: "JetBrains Mono", monospace;
-        font-size: 10.5px;
-        color: var(--amber-dark);
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-      }
-      .work-body h3 {
-        font-size: 17px;
-        margin: 8px 0 8px;
-        font-weight: 600;
-      }
-      .work-body p {
-        font-size: 14px;
-        color: var(--slate);
-        margin: 0 0 16px;
-      }
-      .work-tools {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-        font-family: "JetBrains Mono", monospace;
-        font-size: 10.5px;
-        color: var(--slate);
-      }
-      .work-tools span {
-        border: 1px solid var(--paper-line);
-        padding: 3px 8px;
-        border-radius: 2px;
-      }
-      @media (max-width: 700px) {
-        .work-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-      .placeholder-note {
-        margin-top: 28px;
-        font-family: "JetBrains Mono", monospace;
-        font-size: 12px;
-        color: var(--slate);
-        border-left: 2px solid var(--amber);
-        padding: 10px 16px;
-        background: #fff;
-      }
+  .eyebrow{
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent-2);
+    letter-spacing: 0.02em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .eyebrow::before{ content:'//'; color: var(--text-muted); }
 
-      /* ---------- REVIEWS ---------- */
-      .review-section {
-        background: #fff;
-        border-top: 1px solid var(--paper-line);
-        border-bottom: 1px solid var(--paper-line);
-      }
-      .review-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-      }
-      .review-card {
-        background: var(--paper);
-        border: 1px solid var(--paper-line);
-        border-radius: var(--radius);
-        padding: 26px 24px;
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-      }
-      .review-stars {
-        font-family: "JetBrains Mono", monospace;
-        font-size: 13px;
-        color: var(--amber);
-        letter-spacing: 2px;
-      }
-      .review-quote {
-        font-size: 14.5px;
-        color: var(--ink);
-        margin: 0;
-        flex-grow: 1;
-      }
-      .review-author {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-top: 1px solid var(--paper-line);
-        padding-top: 14px;
-      }
-      .review-name {
-        font-size: 13.5px;
-        font-weight: 600;
-      }
-      .review-role {
-        font-family: "JetBrains Mono", monospace;
-        font-size: 11px;
-        color: var(--slate);
-      }
-      @media (max-width: 900px) {
-        .review-grid {
-          grid-template-columns: 1fr;
-        }
-      }
+  h1,h2,h3{
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
 
-      /* ---------- CONTACT / TITLE BLOCK ---------- */
-      .contact-section {
-        background: var(--navy-deep);
-        color: #fff;
-      }
-      .contact-section .section-head {
-        border-bottom-color: rgba(127, 182, 217, 0.25);
-      }
-      .contact-section .section-head h2 {
-        color: #fff;
-      }
-      .title-block {
-        border: 1px solid rgba(127, 182, 217, 0.4);
-        border-radius: var(--radius);
-        overflow: hidden;
-      }
-      .tb-row {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-      }
-      .tb-cell {
-        padding: 20px 22px;
-        border-right: 1px solid rgba(127, 182, 217, 0.25);
-        border-bottom: 1px solid rgba(127, 182, 217, 0.25);
-      }
-      .tb-cell:last-child {
-        border-right: none;
-      }
-      .tb-label {
-        font-family: "JetBrains Mono", monospace;
-        font-size: 10px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--cyan-line);
-        display: block;
-        margin-bottom: 6px;
-      }
-      .tb-value {
-        font-size: 14.5px;
-      }
-      .tb-value a {
-        text-decoration: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-      }
-      .tb-value a:hover {
-        border-color: var(--amber);
-        color: var(--amber);
-      }
-      .tb-item {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-      .tb-icon {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        width: 34px;
-        height: 34px;
-        border: 1px solid rgba(127, 182, 217, 0.4);
-        border-radius: 3px;
-        color: var(--cyan-line);
-        transition:
-          color 0.15s,
-          background 0.15s,
-          border-color 0.15s;
-      }
-      .tb-icon svg {
-        width: 17px;
-        height: 17px;
-        display: block;
-      }
-      .tb-icon:hover,
-      .tb-icon:focus-visible {
-        color: var(--navy-deep);
-        background: var(--amber);
-        border-color: var(--amber);
-      }
-      .tb-full {
-        grid-column: 1 / -1;
-        padding: 28px 22px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 18px;
-      }
-      .stamp {
-        font-family: "JetBrains Mono", monospace;
-        font-size: 12px;
-        color: var(--amber);
-        border: 1.5px solid var(--amber);
-        border-radius: 3px;
-        padding: 8px 16px;
-        transform: rotate(-3deg);
-        letter-spacing: 0.06em;
-      }
-      @media (max-width: 820px) {
-        .tb-row {
-          grid-template-columns: 1fr 1fr;
-        }
-      }
-      @media (max-width: 520px) {
-        .tb-row {
-          grid-template-columns: 1fr;
-        }
-        .tb-cell {
-          border-right: none;
-        }
-      }
+  h2{ font-size: clamp(28px, 4vw, 38px); margin-bottom: 14px; }
+  .section-lede{
+    color: var(--text-secondary);
+    font-size: 16px;
+    max-width: 560px;
+    margin-bottom: 48px;
+  }
 
-      footer {
-        padding: 24px 40px;
-        background: var(--navy-deep);
-        color: var(--slate);
-        font-family: "JetBrains Mono", monospace;
-        font-size: 11.5px;
-        text-align: center;
-        border-top: 1px solid rgba(127, 182, 217, 0.15);
-      }
+  code, .mono{ font-family: var(--font-mono); }
 
-      :focus-visible {
-        outline: 2px solid var(--amber);
-        outline-offset: 2px;
-      }
-    </style>
-  </head>
-  <body>
-    <nav class="nav">
-      <div class="logo"><span class="logo-mark">MO</span> Mark Opiyo</div>
-      <div class="nav-links">
-        <a href="#capabilities">Services</a>
-        <a href="#work">Work</a>
-        <a href="#reviews">Reviews</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <a class="nav-cta" href="#contact">Get in touch</a>
-      <button
-        class="nav-burger"
-        id="navBurger"
-        aria-label="Open menu"
-        aria-expanded="false"
-        aria-controls="navMobilePanel"
-      >
-        <span></span><span></span><span></span>
-      </button>
-    </nav>
+  /* ============================
+     NAVIGATION — sticky, editor-tab style
+     ============================ */
+  header.nav{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,14,23,0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-soft);
+  }
 
-    <div class="nav-scrim" id="navScrim"></div>
-    <div class="nav-mobile-panel" id="navMobilePanel">
-      <a href="#capabilities">Services</a>
-      <a href="#work">Work</a>
-      <a href="#reviews">Reviews</a>
-      <a href="#contact">Contact</a>
-      <a class="nav-cta" href="#contact">Get in touch</a>
+  .nav-inner{
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo{
+    font-family: var(--font-mono);
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    cursor: pointer;
+  }
+  .logo .bracket{ color: var(--accent); }
+  .logo .blink{
+    display:inline-block;
+    width: 8px; height: 18px;
+    background: var(--accent-2);
+    margin-left: 6px;
+    animation: blink 1.1s steps(1) infinite;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  nav.links{
+    display:flex;
+    gap: 4px;
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 4px;
+  }
+
+  nav.links a{
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    padding: 8px 18px;
+    border-radius: 999px;
+    transition: color 0.2s ease, background 0.2s ease;
+    cursor: pointer;
+  }
+
+  nav.links a:hover{ color: var(--text-primary); }
+
+  nav.links a.active{
+    color: #0A0E17;
+    background: var(--accent);
+    font-weight: 600;
+  }
+
+  .nav-cta{
+    display:flex;
+    align-items:center;
+    gap: 16px;
+  }
+
+  .burger{
+    display:none;
+    flex-direction:column;
+    gap:5px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding: 6px;
+  }
+  .burger span{
+    width: 22px; height: 2px;
+    background: var(--text-primary);
+    border-radius: 2px;
+  }
+
+  /* ============================
+     BUTTONS
+     ============================ */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 15px;
+    padding: 14px 28px;
+    border-radius: var(--radius);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease, border-color .2s ease;
+  }
+  .btn:active{ transform: scale(0.97); }
+
+  .btn-primary{
+    background: var(--accent);
+    color: #14100A;
+  }
+  .btn-primary:hover{
+    box-shadow: 0 0 0 3px var(--accent-dim);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline{
+    background: transparent;
+    color: var(--text-primary);
+    border-color: var(--border);
+  }
+  .btn-outline:hover{
+    border-color: var(--accent-2);
+    color: var(--accent-2);
+    transform: translateY(-2px);
+  }
+
+  .btn-block{ width: 100%; justify-content:center; }
+
+  /* ============================
+     PAGE / SECTION VISIBILITY
+     ============================ */
+  .page{
+    display: none;
+    animation: fadeUp 0.5s ease both;
+  }
+  .page.active{ display: block; }
+
+  @keyframes fadeUp{
+    from{ opacity:0; transform: translateY(14px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+
+  main{ min-height: 60vh; }
+
+  /* ============================
+     HERO (Home)
+     ============================ */
+  .hero{
+    position: relative;
+    min-height: 88vh;
+    display:flex;
+    align-items:center;
+    padding: 100px 0 80px;
+    overflow: hidden;
+  }
+
+  .hero-bg{
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(180deg, rgba(10,14,23,0.88) 0%, rgba(10,14,23,0.94) 60%, var(--bg) 100%),
+      linear-gradient(90deg, rgba(10,14,23,0.75) 0%, rgba(10,14,23,0.35) 55%, rgba(10,14,23,0.75) 100%),
+      url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1600&fit=crop&q=80');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+
+  .hero-inner{
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 56px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero h1{
+    font-size: clamp(34px, 5.4vw, 58px);
+    margin-bottom: 20px;
+  }
+  .hero h1 span{ color: var(--accent); }
+
+  .hero p.lede{
+    color: var(--text-secondary);
+    font-size: 17px;
+    max-width: 480px;
+    margin-bottom: 32px;
+  }
+
+  .hero-actions{
+    display:flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+
+  .hero-stats{
+    display:flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .hero-stats .stat b{
+    display:block;
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--text-primary);
+  }
+  .hero-stats .stat span{
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  /* floating terminal card — signature element */
+  .terminal{
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
+    overflow: hidden;
+    animation: floaty 6s ease-in-out infinite;
+  }
+  @keyframes floaty{
+    0%,100%{ transform: translateY(0); }
+    50%{ transform: translateY(-10px); }
+  }
+
+  .terminal-bar{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding: 12px 16px;
+    background: var(--bg-raised);
+    border-bottom: 1px solid var(--border);
+  }
+  .terminal-bar .dot{ width:10px; height:10px; border-radius:50%; }
+  .dot.r{ background:#E2665A; }
+  .dot.y{ background:#F2B84B; }
+  .dot.g{ background:#4FD1C5; }
+  .terminal-bar span.title{
+    margin-left: 8px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .terminal-body{
+    padding: 22px 20px;
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+  .terminal-body .line{ margin-bottom: 10px; white-space: pre-wrap; }
+  .terminal-body .prompt{ color: var(--accent-2); }
+  .terminal-body .key{ color: #C299F2; }
+  .terminal-body .str{ color: var(--accent); }
+  .terminal-body .comment{ color: var(--text-muted); }
+  .cursor{
+    display:inline-block;
+    width:7px; height:14px;
+    background: var(--accent);
+    animation: blink 1s steps(1) infinite;
+    vertical-align: middle;
+  }
+
+  /* ============================
+     GENERIC SECTION SPACING
+     ============================ */
+  .section{ padding: 96px 0; }
+  .section.tight{ padding: 72px 0; }
+  .section-alt{ background: var(--bg-raised); border-top:1px solid var(--border-soft); border-bottom:1px solid var(--border-soft); }
+
+  /* ============================
+     ABOUT
+     ============================ */
+  .about-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items:start;
+  }
+
+  .about-copy p{
+    color: var(--text-secondary);
+    margin-bottom: 18px;
+    font-size: 15.5px;
+  }
+
+  .code-block{
+    background: var(--bg-card);
+    border:1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .code-block .k{ color: var(--accent-2); }
+  .code-block .s{ color: var(--accent); }
+
+  .highlights{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .highlight-card{
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .highlight-card:hover{
+    border-color: var(--accent-2);
+    transform: translateY(-3px);
+  }
+  .highlight-card .icon{ font-size: 22px; margin-bottom: 10px; display:block; }
+  .highlight-card h3{ font-size: 15px; margin-bottom: 6px; }
+  .highlight-card p{ font-size: 13.5px; color: var(--text-secondary); }
+
+  /* ============================
+     SERVICES
+     ============================ */
+  .services-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+
+  .service-card{
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 30px 26px;
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  }
+  .service-card:hover{
+    transform: translateY(-6px);
+    border-color: var(--accent);
+    box-shadow: 0 20px 40px -20px rgba(242,184,75,0.25);
+  }
+
+  .service-icon{
+    width: 46px; height: 46px;
+    border-radius: 12px;
+    display:flex; align-items:center; justify-content:center;
+    background: var(--accent-2-dim);
+    margin-bottom: 20px;
+  }
+  .service-icon svg{ width: 24px; height: 24px; stroke: var(--accent-2); }
+
+  .service-card h3{
+    font-size: 19px;
+    margin-bottom: 10px;
+  }
+  .service-card p{
+    color: var(--text-secondary);
+    font-size: 14.5px;
+    margin-bottom: 16px;
+  }
+
+  .service-tag{
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--accent);
+    background: var(--accent-dim);
+    display:inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+
+  /* process strip */
+  .process{
+    display:flex;
+    gap: 0;
+    margin-top: 72px;
+    border-top: 1px solid var(--border-soft);
+    padding-top: 40px;
+    flex-wrap: wrap;
+  }
+  .process-step{
+    flex:1;
+    min-width: 180px;
+    padding: 0 20px;
+    border-left: 1px solid var(--border-soft);
+  }
+  .process-step:first-child{ border-left:none; padding-left:0; }
+  .process-step .tag{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    display:block;
+  }
+  .process-step h4{ font-size: 15px; margin-bottom: 6px; font-family: var(--font-display); }
+  .process-step p{ font-size: 13.5px; color: var(--text-secondary); }
+
+  /* ============================
+     CONTACT
+     ============================ */
+  .contact-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .contact-card{
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    min-height: 190px;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .contact-card:hover{ transform: translateY(-4px); }
+
+  .contact-card .icon-row{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+  }
+  .contact-card .icon-row svg{ width:26px; height:26px; stroke: var(--accent); }
+
+  .contact-card h3{ font-size: 17px; margin-bottom: 6px; }
+  .contact-card p{ color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; }
+
+  .contact-info{
+    grid-column: 1 / -1;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 8px;
+  }
+  .info-item{
+    display:flex;
+    gap: 14px;
+    align-items:flex-start;
+  }
+  .info-item svg{ width:20px; height:20px; stroke: var(--accent-2); flex-shrink:0; margin-top:2px; }
+  .info-item h4{ font-size: 13px; color: var(--text-muted); font-weight:500; margin-bottom:4px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .info-item p{ font-size: 14.5px; color: var(--text-primary); }
+
+  .availability-badge{
+    display:inline-flex;
+    align-items:center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--accent-2);
+    background: var(--accent-2-dim);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 24px;
+  }
+  .availability-badge .pulse{
+    width:7px; height:7px; border-radius:50%;
+    background: var(--accent-2);
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{ box-shadow: 0 0 0 0 rgba(79,209,197,0.5); }
+    50%{ box-shadow: 0 0 0 6px rgba(79,209,197,0); }
+  }
+
+  /* ============================
+     FOOTER — always visible
+     ============================ */
+  footer{
+    border-top: 1px solid var(--border-soft);
+    background: var(--bg-raised);
+    padding: 48px 0 28px;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 36px;
+  }
+  .footer-brand p{
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 12px;
+    max-width: 320px;
+  }
+  .footer-col h4{
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 14px;
+  }
+  .footer-col a, .footer-col p{
+    display:block;
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    transition: color .2s ease;
+  }
+  .footer-col a:hover{ color: var(--accent); }
+
+  .footer-bottom{
+    border-top: 1px solid var(--border-soft);
+    padding-top: 22px;
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .footer-bottom .mono{ color: var(--text-muted); }
+
+  /* ============================
+     RESPONSIVE
+     ============================ */
+  @media (max-width: 860px){
+    .hero-inner{ grid-template-columns: 1fr; }
+    .terminal{ order:-1; max-width: 460px; }
+    .about-grid{ grid-template-columns: 1fr; }
+    .services-grid{ grid-template-columns: 1fr; }
+    .contact-grid{ grid-template-columns: 1fr; }
+    .contact-info{ grid-template-columns: 1fr; }
+    .footer-grid{ grid-template-columns: 1fr; gap: 28px; }
+    .process{ flex-direction:column; gap: 24px; }
+    .process-step{ border-left:none; padding-left:0; border-top: 1px solid var(--border-soft); padding-top:20px; }
+    .process-step:first-child{ border-top:none; padding-top:0; }
+  }
+
+  @media (max-width: 760px){
+    nav.links{ display:none; }
+    .burger{ display:flex; }
+    nav.links.mobile-open{
+      display:flex;
+      position: absolute;
+      top: 64px;
+      left: 16px;
+      right: 16px;
+      flex-direction: column;
+      background: var(--bg-raised);
+      border-radius: var(--radius);
+      padding: 10px;
+    }
+    nav.links.mobile-open a{ text-align:center; padding: 12px; }
+  }
+
+  @media (max-width: 600px){
+    .hero{ padding-top: 64px; }
+    .hero-stats{ gap: 20px; }
+    .highlights{ grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================
+     NAVIGATION
+     ============================ -->
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo" data-nav="home">
+      <span class="bracket">&lt;</span>Mark Opiyo<span class="bracket">/&gt;</span>
+      <span class="blink"></span>
     </div>
 
-    <header class="hero">
-      <div class="hero-inner">
+    <nav class="links" id="navLinks">
+      <a data-nav="home" class="active">Home</a>
+      <a data-nav="about">About</a>
+      <a data-nav="services">Services</a>
+      <a data-nav="contact">Contact</a>
+    </nav>
+
+    <div class="nav-cta">
+      <a href="tel:+254700277652" class="btn btn-outline" style="padding:10px 18px; font-size:13.5px; display:none;" id="navCallBtn">Call now</a>
+      <button class="burger" id="burgerBtn" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============================
+       HOME
+       ============================ -->
+  <section class="page active" id="page-home">
+    <div class="hero">
+      <div class="hero-bg" role="img" aria-label="Close-up of code on a screen"></div>
+      <div class="wrap hero-inner">
         <div>
-          <span class="eyebrow">Full-Stack Software Engineer</span>
-          <h1>I build the <em>systems</em><br />your business runs on.</h1>
-          <p class="lede">
-            Websites that represent your brand properly, web apps that run daily
-            operations, and AI features that remove manual work — planned,
-            built, and shipped end to end.
-          </p>
-         </div>
-      </div>
-    </header>
-
-    <section id="capabilities">
-      <div class="section-inner">
-        <div class="section-head">
-          <h2>What I build</h2>
+          <div class="eyebrow">nairobi · available for new projects</div>
+          <h1>I build web products that <span>actually ship.</span></h1>
+          <p class="lede">Mark Opiyo — a freelance fullstack developer helping businesses design, build, and maintain software that works. From first line of code to production, and everything after.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" data-nav="contact">Start a project</a>
+            <a class="btn btn-outline" data-nav="services">See services</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat"><b>4</b><span>core services</span></div>
+            <div class="stat"><b>100%</b><span>remote friendly</span></div>
+            <div class="stat"><b>&lt;24h</b><span>response time</span></div>
+          </div>
         </div>
-        <div class="cap-grid">
-          <div class="cap-card">
-            <h3>Websites</h3>
-            <p>
-              Sites and landing pages that load fast, rank properly, and are
-              easy for you to update without calling a developer every time copy
-              changes.
-            </p>
+
+        <div class="terminal">
+          <div class="terminal-bar">
+            <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+            <span class="title">whoami.sh</span>
           </div>
-          <div class="cap-card">
-            <h3>Web applications</h3>
-            <p>
-              Customer portals, internal dashboards, and SaaS products — built
-              with proper auth, data modeling, and an interface your team will
-              actually want to use.
-            </p>
-          </div>
-          <div class="cap-card">
-            <h3>AI-powered features</h3>
-            <p>
-              Chat assistants, document processing, and workflow automation
-              layered into your existing product using OpenAI, Claude, or a
-              custom pipeline.
-            </p>
+          <div class="terminal-body">
+            <div class="line"><span class="prompt">$</span> whoami</div>
+            <div class="line">Mark Opiyo — Fullstack Developer</div>
+            <div class="line"><span class="comment">// based in Nairobi, Kenya</span></div>
+            <div class="line">&nbsp;</div>
+            <div class="line"><span class="prompt">$</span> cat stack.json</div>
+            <div class="line">{ <span class="key">"builds"</span>: [<span class="str">"web apps"</span>, <span class="str">"apis"</span>,</div>
+            <div class="line">&nbsp;&nbsp;<span class="str">"AI integrations"</span>] }</div>
+            <div class="line">&nbsp;</div>
+            <div class="line"><span class="prompt">$</span> ./hire_mark<span class="cursor"></span></div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section
-      id="work"
-      style="
-        background: #fff;
-        border-top: 1px solid var(--paper-line);
-        border-bottom: 1px solid var(--paper-line);
-      "
-    >
-      <div class="section-inner">
-        <div class="section-head">
-          <h2>Case files</h2>
+    <!-- quick services preview strip -->
+    <div class="section tight">
+      <div class="wrap">
+        <div class="eyebrow">what I do</div>
+        <h2>Four ways I can help your business</h2>
+        <p class="section-lede">Whether you need something built from scratch or kept running smoothly, here's where I come in.</p>
+        <div class="highlights">
+          <div class="highlight-card"><span class="icon">🌐</span><h3>Web development</h3><p>Custom sites and web apps built for speed and growth.</p></div>
+          <div class="highlight-card"><span class="icon">🛠️</span><h3>Web maintenance</h3><p>Ongoing updates, fixes, and monitoring so things stay live.</p></div>
+          <div class="highlight-card"><span class="icon">💻</span><h3>Software development</h3><p>Custom tools and internal systems tailored to how you work.</p></div>
+          <div class="highlight-card"><span class="icon">🤖</span><h3>AI integrations</h3><p>Practical AI features built directly into your product.</p></div>
         </div>
-        <div class="work-grid">
-          <div class="work-card">
-            <div class="work-thumb">[ PROJECT SCREENSHOT ]</div>
-            <div class="work-body">
-              <span class="tag">Website</span>
-              <h3>Business website — placeholder</h3>
-              <p>
-                Replace with a real client site: what the business needed, what
-                you built, and the outcome (load time, leads, etc).
-              </p>
-              <div class="work-tools">
-                <span>Next.js</span><span>Tailwind</span><span>Vercel</span>
-              </div>
-            </div>
-          </div>
-          <div class="work-card">
-            <div class="work-thumb">[ PROJECT SCREENSHOT ]</div>
-            <div class="work-body">
-              <span class="tag">E-Commerce</span>
-              <h3>Online store — placeholder</h3>
-              <p>
-                Replace with a real storefront build: catalog size,
-                payment/checkout flow, and the sales or conversion impact.
-              </p>
-              <div class="work-tools">
-                <span>Next.js</span><span>Stripe</span><span>PostgreSQL</span>
-              </div>
-            </div>
-          </div>
-          <div class="work-card">
-            <div class="work-thumb">[ PROJECT SCREENSHOT ]</div>
-            <div class="work-body">
-              <span class="tag">SaaS</span>
-              <h3>SaaS product — placeholder</h3>
-              <p>
-                Replace with a real app: the problem it solves, the stack, and a
-                link to a live demo or repo.
-              </p>
-              <div class="work-tools">
-                <span>React</span><span>Node.js</span><span>PostgreSQL</span>
-              </div>
-            </div>
-          </div>
-          <div class="work-card">
-            <div class="work-thumb">[ PROJECT SCREENSHOT ]</div>
-            <div class="work-body">
-              <span class="tag">AI System</span>
-              <h3>AI assistant / automation — placeholder</h3>
-              <p>
-                Replace with a real AI feature: what it automates, which
-                model/API it uses, and measurable impact.
-              </p>
-              <div class="work-tools">
-                <span>OpenAI API</span><span>LangChain</span
-                ><span>Node.js</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <p class="placeholder-note">
-          These four cards are placeholders — swap in real projects,
-          screenshots, and links when you have them ready.
-        </p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="reviews" class="review-section">
-      <div class="section-inner">
-        <div class="section-head">
-          <h2>What clients say</h2>
-        </div>
-        <div class="review-grid">
-          <div class="review-card">
-            <span class="review-stars">★★★★★</span>
-            <p class="review-quote">
-              Placeholder review — swap in a real quote from a client about how
-              the project turned out, timelines, and communication along the
-              way.
-            </p>
-            <div class="review-author">
-              <div>
-                <div class="review-name">Client Name</div>
-                <div class="review-role">Founder, Company</div>
-              </div>
+  <!-- ============================
+       ABOUT
+       ============================ -->
+  <section class="page" id="page-about">
+    <div class="section">
+      <div class="wrap">
+        <div class="eyebrow">about</div>
+        <h2>The developer behind the code</h2>
+        <p class="section-lede">A closer look at how I work and what I bring to your project.</p>
+
+        <div class="about-grid">
+          <div class="about-copy">
+            <p>I'm Mark Opiyo, a freelance fullstack developer based in Nairobi, working with clients across web development, software development, and website maintenance. I care about building things that are fast, reliable, and genuinely useful — not just software that looks good in a demo.</p>
+            <p>My work spans the full stack: from designing the interface someone actually touches, to the backend logic and databases that keep it running, to keeping a site healthy long after launch. I also specialize in integrating AI tools directly into web apps — think smart search, automation, chat assistants, and content generation — built to solve a real problem, not bolted on for buzzwords.</p>
+            <p>I work closely with each client, communicate clearly, and treat every project like it's going into production — because it usually is.</p>
+
+            <div class="code-block">
+              <div><span class="k">const</span> developer = {</div>
+              <div>&nbsp;&nbsp;name: <span class="s">'Mark Opiyo'</span>,</div>
+              <div>&nbsp;&nbsp;role: <span class="s">'Fullstack Developer'</span>,</div>
+              <div>&nbsp;&nbsp;location: <span class="s">'Nairobi, Kenya'</span>,</div>
+              <div>&nbsp;&nbsp;focus: [<span class="s">'web'</span>, <span class="s">'software'</span>, <span class="s">'AI'</span>]</div>
+              <div>};</div>
             </div>
           </div>
-          <div class="review-card">
-            <span class="review-stars">★★★★★</span>
-            <p class="review-quote">
-              Placeholder review — swap in a real quote focused on a specific
-              result: faster load times, more signups, less manual work.
-            </p>
-            <div class="review-author">
-              <div>
-                <div class="review-name">Client Name</div>
-                <div class="review-role">Operations Lead, Company</div>
-              </div>
-            </div>
-          </div>
-          <div class="review-card">
-            <span class="review-stars">★★★★★</span>
-            <p class="review-quote">
-              Placeholder review — swap in a real quote about working style:
-              responsiveness, clarity, or handling a tricky requirement well.
-            </p>
-            <div class="review-author">
-              <div>
-                <div class="review-name">Client Name</div>
-                <div class="review-role">Product Manager, Company</div>
-              </div>
-            </div>
+
+          <div class="highlights">
+            <div class="highlight-card"><span class="icon">🎯</span><h3>Built to spec</h3><p>Clear scope, clear delivery — no vague promises.</p></div>
+            <div class="highlight-card"><span class="icon">⚡</span><h3>Performance first</h3><p>Fast load times and clean code from the start.</p></div>
+            <div class="highlight-card"><span class="icon">🔒</span><h3>Reliable & secure</h3><p>Sites and systems built to stay stable in production.</p></div>
+            <div class="highlight-card"><span class="icon">🤝</span><h3>Direct communication</h3><p>You talk to the person actually writing the code.</p></div>
+            <div class="highlight-card"><span class="icon">📈</span><h3>Built to grow</h3><p>Architecture that scales as your business does.</p></div>
+            <div class="highlight-card"><span class="icon">🧩</span><h3>End-to-end</h3><p>From first concept to long-term maintenance.</p></div>
           </div>
         </div>
-        <p class="placeholder-note">
-          These three reviews are placeholders — replace with real client
-          testimonials as you collect them.
-        </p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="contact" class="contact-section">
-      <div class="section-inner">
-        <div class="section-head">
-          <h2>Get in touch</h2>
-        </div>
-        <div class="title-block">
-          <div class="tb-row">
-            <div class="tb-cell">
-              <span class="tb-label">Phone</span>
-              <div class="tb-item">
-                <a
-                  class="tb-icon"
-                  href="tel:+254700277652"
-                  aria-label="Call Mark Opiyo"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.8"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path
-                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
-                    />
-                  </svg>
-                </a>
-                <span class="tb-value">+254700277652</span>
-              </div>
+  <!-- ============================
+       SERVICES
+       ============================ -->
+  <section class="page" id="page-services">
+    <div class="section">
+      <div class="wrap">
+        <div class="eyebrow">services</div>
+        <h2>What I can build for you</h2>
+        <p class="section-lede">Four core services, each handled end-to-end — from planning through delivery and beyond.</p>
+
+        <div class="services-grid">
+
+          <div class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18"/><path d="M8 21h8"/></svg>
             </div>
-            <div class="tb-cell">
-              <span class="tb-label">Email</span>
-              <div class="tb-item">
-                <a
-                  class="tb-icon"
-                  href="mailto:markopiyo2@gmail.com"
-                  aria-label="Email Mark Opiyo"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.8"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path
-                      d="M2.4 5.4h19.2a1 1 0 0 1 1 1v11.2a1 1 0 0 1-1 1H2.4a1 1 0 0 1-1-1V6.4a1 1 0 0 1 1-1z"
-                    />
-                    <path d="M1.6 6.2 12 13.6l10.4-7.4" />
-                  </svg>
-                </a>
-                <span class="tb-value"
-                  ><a href="mailto:markopiyo2@gmail.com">Send Email</a></span
-                >
-              </div>
-            </div>
-            <div class="tb-cell">
-              
-            <span class="tb-label">GitHub</span>
-              <div class="tb-item">
-                <a
-                  class="tb-icon"
-                  href="https://github.com/markopiyo"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Mark Opiyo on GitHub"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.4 7.86 10.93.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.87-1.54-3.87-1.54-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.75 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.58.23 2.75.11 3.04.74.8 1.18 1.83 1.18 3.08 0 4.41-2.7 5.38-5.27 5.67.42.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.2.67.8.56A10.99 10.99 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"
-                    />
-                  </svg>
-                </a>
-                <span class="tb-value"
-                  ><a
-                    href="https://github.com/markopiyo"
-                    target="_blank"
-                    rel="noopener"
-                    >GitHub</a
-                  ></span
-                >
-              </div>
-            </div>
-            <div class="tb-cell">
-              <span class="tb-label">LinkedIn</span>
-              <div class="tb-item">
-                <a
-                  class="tb-icon"
-                  href="https://www.linkedin.com/in/mark-opiyo-5b0253b9/"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Mark Opiyo on LinkedIn"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"
-                    />
-                  </svg>
-                </a>
-                <span class="tb-value"
-                  ><a
-                    href="https://www.linkedin.com/in/mark-opiyo-5b0253b9/"
-                    target="_blank"
-                    rel="noopener"
-                    >LinkedIn Profile</a
-                  ></span
-                >
-              </div>
-            </div>
+            <h3>Web development</h3>
+            <p>Custom websites and web applications, designed and built from the ground up to match your business and load fast on any device.</p>
+            <span class="service-tag">design → build → launch</span>
           </div>
-          <div class="tb-row">
-            <div class="tb-full">
-              <div>
-                <span class="tb-label">Availability</span>
-                <span class="tb-value"
-                  >Open to Freelance &amp; Contract Work</span
-                >
-              </div>
-              <span class="stamp">OPEN FOR WORK</span>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <h3>Web maintenance</h3>
+            <p>Ongoing updates, security patches, bug fixes, and uptime monitoring so your site keeps running smoothly after launch day.</p>
+            <span class="service-tag">monitor → fix → update</span>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <h3>Software development</h3>
+            <p>Custom tools, internal systems, and business applications built around how your team actually works — not a generic template.</p>
+            <span class="service-tag">plan → develop → deploy</span>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+            </div>
+            <h3>AI integrations</h3>
+            <p>Practical AI features embedded inside your web app — smart search, chat assistants, automation, and content tools that solve real problems.</p>
+            <span class="service-tag">assess → integrate → refine</span>
+          </div>
+
+        </div>
+
+        <div class="process">
+          <div class="process-step">
+            <span class="tag mono">// step</span>
+            <h4>Discovery call</h4>
+            <p>We talk through what you need and whether it's the right fit.</p>
+          </div>
+          <div class="process-step">
+            <span class="tag mono">// step</span>
+            <h4>Scope & quote</h4>
+            <p>You get a clear plan, timeline, and price before anything starts.</p>
+          </div>
+          <div class="process-step">
+            <span class="tag mono">// step</span>
+            <h4>Build</h4>
+            <p>I build with regular check-ins, so there are no surprises at the end.</p>
+          </div>
+          <div class="process-step">
+            <span class="tag mono">// step</span>
+            <h4>Launch & support</h4>
+            <p>Your project goes live, with maintenance available afterward.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       CONTACT
+       ============================ -->
+  <section class="page" id="page-contact">
+    <div class="section">
+      <div class="wrap">
+        <div class="eyebrow">contact</div>
+        <div class="availability-badge"><span class="pulse"></span> Currently available for new projects</div>
+        <h2>Let's build something together</h2>
+        <p class="section-lede">Reach out directly by phone or email — whichever's easiest for you.</p>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="icon-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div>
+              <h3>Call directly</h3>
+              <p>Fastest way to reach me for urgent or quick questions.</p>
+            </div>
+            <a href="tel:+254700277652" class="btn btn-primary btn-block">Call us — +254 700 277 652</a>
+          </div>
+
+          <div class="contact-card">
+            <div class="icon-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
+            </div>
+            <div>
+              <h3>Send an email</h3>
+              <p>Best for project details, briefs, or attaching files.</p>
+            </div>
+            <a href="mailto:markopiyo2@gmail.com" class="btn btn-outline btn-block">Email us — markopiyo2@gmail.com</a>
+          </div>
+
+          <div class="contact-info">
+            <div class="info-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div><h4>Service area</h4><p>Nairobi, Kenya — remote-friendly worldwide</p></div>
+            </div>
+            <div class="info-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <div><h4>Response time</h4><p>Usually within 24 hours</p></div>
+            </div>
+            <div class="info-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              <div><h4>Availability</h4><p>Open for new projects now</p></div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <footer>© <span id="year"></span> Mark Opiyo</footer>
+</main>
 
-    <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
+<!-- ============================
+     FOOTER — always visible
+     ============================ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="bracket">&lt;</span>Mark Opiyo<span class="bracket">/&gt;</span></div>
+        <p>Freelance fullstack developer in Nairobi, building and maintaining web apps, software, and AI-powered features.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <a data-nav="home">Home</a>
+        <a data-nav="about">About</a>
+        <a data-nav="services">Services</a>
+        <a data-nav="contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="tel:+254700277652">+254 700 277 652</a>
+        <a href="mailto:markopiyo2@gmail.com">markopiyo2@gmail.com</a>
+        <p>Nairobi, Kenya</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Mark Opiyo. All rights reserved.</span>
+      <span class="mono">built with &lt;code/&gt; in Nairobi</span>
+    </div>
+  </div>
+</footer>
 
-      const navBurger = document.getElementById("navBurger");
-      const navPanel = document.getElementById("navMobilePanel");
-      const navScrim = document.getElementById("navScrim");
+<script>
+(function(){
+  "use strict";
 
-      function openNav() {
-        navPanel.classList.add("is-open");
-        navScrim.classList.add("is-open");
-        navBurger.classList.add("is-open");
-        navBurger.setAttribute("aria-expanded", "true");
-        navBurger.setAttribute("aria-label", "Close menu");
+  // ============================
+  // CONFIG — page routes
+  // ============================
+  var pages = ["home", "about", "services", "contact"];
+  var pathMap = { "home": "/", "about": "/about", "services": "/services", "contact": "/contact" };
+
+  var mainNavLinks = document.querySelectorAll('.links a[data-nav]');
+  var allNavTriggers = document.querySelectorAll('[data-nav]');
+
+  // ============================
+  // SHOW PAGE — hides all, shows one, updates active nav state
+  // ============================
+  function showPage(name, pushToHistory){
+    if(pages.indexOf(name) === -1){ name = "home"; }
+
+    // toggle page sections
+    pages.forEach(function(p){
+      var el = document.getElementById('page-' + p);
+      if(el){ el.classList.toggle('active', p === name); }
+    });
+
+    // toggle active nav link styling (top nav only)
+    mainNavLinks.forEach(function(link){
+      link.classList.toggle('active', link.getAttribute('data-nav') === name);
+    });
+
+    // close mobile menu after navigating
+    document.getElementById('navLinks').classList.remove('mobile-open');
+
+    // scroll to top on page change
+    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+
+    // attempt to update the URL — wrapped so this works even without a real server
+    if(pushToHistory){
+      try{
+        var path = pathMap[name] || '/';
+        window.history.pushState({ page: name }, '', path);
+      }catch(e){
+        // pushState unavailable (e.g. local file preview) — silently continue,
+        // page switching still works without URL changes
       }
-      function closeNav() {
-        navPanel.classList.remove("is-open");
-        navScrim.classList.remove("is-open");
-        navBurger.classList.remove("is-open");
-        navBurger.setAttribute("aria-expanded", "false");
-        navBurger.setAttribute("aria-label", "Open menu");
-      }
+    }
+  }
 
-      navBurger.addEventListener("click", () => {
-        navPanel.classList.contains("is-open") ? closeNav() : openNav();
-      });
-      navScrim.addEventListener("click", closeNav);
-      navPanel.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", closeNav);
-      });
-      window.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") closeNav();
-      });
-    </script>
-  </body>
+  // ============================
+  // NAV CLICK HANDLERS
+  // ============================
+  allNavTriggers.forEach(function(trigger){
+    trigger.addEventListener('click', function(e){
+      e.preventDefault();
+      var target = trigger.getAttribute('data-nav');
+      showPage(target, true);
+    });
+  });
+
+  // ============================
+  // BROWSER BACK / FORWARD SUPPORT
+  // ============================
+  window.addEventListener('popstate', function(e){
+    var name = (e.state && e.state.page) ? e.state.page : detectPageFromPath();
+    showPage(name, false);
+  });
+
+  // ============================
+  // INITIAL LOAD — detect page from URL pathname if possible
+  // ============================
+  function detectPageFromPath(){
+    try{
+      var path = window.location.pathname.replace(/\/+$/, '') || '/';
+      for(var i = 0; i < pages.length; i++){
+        var p = pages[i];
+        if(pathMap[p] === path){ return p; }
+      }
+      // also match bare names like /about.html or /about/
+      var clean = path.replace(/^\//, '').replace(/\.html$/, '');
+      if(pages.indexOf(clean) !== -1){ return clean; }
+      return 'home';
+    }catch(e){
+      // pathname unavailable — default to home
+      return 'home';
+    }
+  }
+
+  showPage(detectPageFromPath(), false);
+
+  // ============================
+  // MOBILE MENU TOGGLE
+  // ============================
+  document.getElementById('burgerBtn').addEventListener('click', function(){
+    document.getElementById('navLinks').classList.toggle('mobile-open');
+  });
+
+  // show "Call now" button on nav only once scrolled a bit (desktop nicety)
+  var callBtn = document.getElementById('navCallBtn');
+  window.addEventListener('scroll', function(){
+    if(window.innerWidth > 760){
+      callBtn.style.display = window.scrollY > 200 ? 'inline-flex' : 'none';
+    }
+  });
+
+  // footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+})();
+</script>
+
+</body>
 </html>
