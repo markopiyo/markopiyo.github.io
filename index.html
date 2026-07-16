@@ -6,15 +6,11 @@
 <title>Mark Opiyo | Fullstack Developer — Nairobi</title>
 <meta name="description" content="Mark Opiyo — freelance fullstack developer in Nairobi. Web development, web maintenance, software development, and AI integrations.">
 
-<!-- Google Fonts: Space Grotesk (display/tech), Inter (body), JetBrains Mono (code accents) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
-  /* ============================
-     TOKENS — design system
-     ============================ */
   :root{
     --bg:            #0A0E17;
     --bg-raised:     #111827;
@@ -24,9 +20,9 @@
     --text-primary:  #E7ECF3;
     --text-secondary:#8B96AB;
     --text-muted:    #5C6883;
-    --accent:        #F2B84B;   /* amber — primary CTA / highlight */
+    --accent:        #F2B84B;
     --accent-dim:    #4A3B1E;
-    --accent-2:      #4FD1C5;   /* teal — secondary accent, used sparingly */
+    --accent-2:      #4FD1C5;
     --accent-2-dim:  #143936;
     --danger:        #E2665A;
 
@@ -40,7 +36,6 @@
   }
 
   *{ box-sizing: border-box; margin:0; padding:0; }
-
   html{ scroll-behavior: smooth; }
 
   body{
@@ -53,26 +48,14 @@
   }
 
   img{ max-width:100%; display:block; }
-
   a{ color: inherit; text-decoration:none; }
-
   ::selection{ background: var(--accent-dim); color: var(--accent); }
-
-  /* subtle scrollbar */
   ::-webkit-scrollbar{ width:10px; }
   ::-webkit-scrollbar-track{ background: var(--bg); }
   ::-webkit-scrollbar-thumb{ background: var(--border); border-radius: 8px; }
+  :focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
 
-  :focus-visible{
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-  }
-
-  .wrap{
-    max-width: var(--max-w);
-    margin: 0 auto;
-    padding: 0 24px;
-  }
+  .wrap{ max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
 
   .eyebrow{
     font-family: var(--font-mono);
@@ -94,18 +77,9 @@
   }
 
   h2{ font-size: clamp(28px, 4vw, 38px); margin-bottom: 14px; }
-  .section-lede{
-    color: var(--text-secondary);
-    font-size: 16px;
-    max-width: 560px;
-    margin-bottom: 48px;
-  }
-
+  .section-lede{ color: var(--text-secondary); font-size: 16px; max-width: 560px; margin-bottom: 48px; }
   code, .mono{ font-family: var(--font-mono); }
 
-  /* ============================
-     NAVIGATION — sticky, editor-tab style
-     ============================ */
   header.nav{
     position: sticky;
     top: 0;
@@ -167,18 +141,9 @@
   }
 
   nav.links a:hover{ color: var(--text-primary); }
+  nav.links a.active{ color: #0A0E17; background: var(--accent); font-weight: 600; }
 
-  nav.links a.active{
-    color: #0A0E17;
-    background: var(--accent);
-    font-weight: 600;
-  }
-
-  .nav-cta{
-    display:flex;
-    align-items:center;
-    gap: 16px;
-  }
+  .nav-cta{ display:flex; align-items:center; gap: 16px; }
 
   .burger{
     display:none;
@@ -189,19 +154,9 @@
     cursor:pointer;
     padding: 6px;
   }
-  .burger span{
-    width: 22px; height: 2px;
-    background: var(--text-primary);
-    border-radius: 2px;
-  }
+  .burger span{ width: 22px; height: 2px; background: var(--text-primary); border-radius: 2px; }
 
-  /* ============================
-     SERVICES MEGA MENU (desktop only)
-     ============================ */
-  .nav-item-mega{
-    position: relative;
-    display: inline-flex;
-  }
+  .nav-item-mega{ position: relative; display: inline-flex; }
 
   .mega-menu{
     position: absolute;
@@ -244,25 +199,9 @@
   .mega-item:hover{ background: var(--bg-raised); }
   .mega-item.active{ background: transparent; color: inherit; font-weight: normal; }
 
-  .mega-item img{
-    width: 60px;
-    height: 60px;
-    border-radius: 8px;
-    object-fit: cover;
-    flex-shrink: 0;
-  }
-
-  .mega-item .mega-text h4{
-    font-family: var(--font-display);
-    font-size: 13.5px;
-    color: var(--text-primary);
-    margin-bottom: 3px;
-  }
-  .mega-item .mega-text p{
-    font-size: 12px;
-    color: var(--text-secondary);
-    line-height: 1.4;
-  }
+  .mega-item img{ width: 60px; height: 60px; border-radius: 8px; object-fit: cover; flex-shrink: 0; }
+  .mega-item .mega-text h4{ font-family: var(--font-display); font-size: 13.5px; color: var(--text-primary); margin-bottom: 3px; }
+  .mega-item .mega-text p{ font-size: 12px; color: var(--text-secondary); line-height: 1.4; }
 
   .mega-footer{
     grid-column: 1 / -1;
@@ -273,20 +212,9 @@
     align-items: center;
     justify-content: space-between;
   }
-  .mega-footer span{
-    font-family: var(--font-mono);
-    font-size: 11.5px;
-    color: var(--text-muted);
-  }
-  .mega-footer a{
-    font-size: 12.5px;
-    font-weight: 600;
-    color: var(--accent);
-  }
+  .mega-footer span{ font-family: var(--font-mono); font-size: 11.5px; color: var(--text-muted); }
+  .mega-footer a{ font-size: 12.5px; font-weight: 600; color: var(--accent); }
 
-  /* ============================
-     BUTTONS
-     ============================ */
   .btn{
     display:inline-flex;
     align-items:center;
@@ -302,52 +230,22 @@
   }
   .btn:active{ transform: scale(0.97); }
 
-  .btn-primary{
-    background: var(--accent);
-    color: #14100A;
-  }
-  .btn-primary:hover{
-    box-shadow: 0 0 0 3px var(--accent-dim);
-    transform: translateY(-2px);
-  }
+  .btn-primary{ background: var(--accent); color: #14100A; }
+  .btn-primary:hover{ box-shadow: 0 0 0 3px var(--accent-dim); transform: translateY(-2px); }
 
-  .btn-outline{
-    background: transparent;
-    color: var(--text-primary);
-    border-color: var(--border);
-  }
-  .btn-outline:hover{
-    border-color: var(--accent-2);
-    color: var(--accent-2);
-    transform: translateY(-2px);
-  }
+  .btn-outline{ background: transparent; color: var(--text-primary); border-color: var(--border); }
+  .btn-outline:hover{ border-color: var(--accent-2); color: var(--accent-2); transform: translateY(-2px); }
 
   .btn-block{ width: 100%; justify-content:center; }
+  .btn-sm{ padding: 9px 16px; font-size: 13px; }
 
-  .btn-sm{
-    padding: 9px 16px;
-    font-size: 13px;
-  }
-
-  /* ============================
-     PAGE / SECTION VISIBILITY
-     ============================ */
-  .page{
-    display: none;
-    animation: fadeUp 0.5s ease both;
-  }
+  .page{ display: none; animation: fadeUp 0.5s ease both; }
   .page.active{ display: block; }
 
-  @keyframes fadeUp{
-    from{ opacity:0; transform: translateY(14px); }
-    to{ opacity:1; transform: translateY(0); }
-  }
+  @keyframes fadeUp{ from{ opacity:0; transform: translateY(14px); } to{ opacity:1; transform: translateY(0); } }
 
   main{ min-height: 60vh; }
 
-  /* ============================
-     HERO (Home)
-     ============================ */
   .hero{
     position: relative;
     min-height: 88vh;
@@ -378,66 +276,64 @@
   }
 
   .hero-content{ max-width: 560px; }
-
-  .hero h1{
-    font-size: clamp(34px, 5.2vw, 56px);
-    margin-bottom: 22px;
-  }
+  .hero h1{ font-size: clamp(34px, 5.2vw, 56px); margin-bottom: 22px; }
   .hero h1 span{ color: var(--accent); }
+  .hero p.lede{ color: var(--text-secondary); font-size: 17px; max-width: 500px; margin-bottom: 32px; }
 
-  .hero p.lede{
-    color: var(--text-secondary);
-    font-size: 17px;
-    max-width: 500px;
-    margin-bottom: 32px;
-  }
+  .hero-actions{ display:flex; gap: 14px; flex-wrap: wrap; margin-bottom: 44px; }
 
-  .hero-actions{
-    display:flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    margin-bottom: 44px;
-  }
+  .hero-stats{ display:flex; gap: 32px; flex-wrap: wrap; padding-top: 28px; border-top: 1px solid var(--border-soft); }
+  .hero-stats .stat b{ display:block; font-family: var(--font-display); font-size: 22px; color: var(--text-primary); }
+  .hero-stats .stat span{ font-size: 13px; color: var(--text-muted); }
 
-  .hero-stats{
-    display:flex;
-    gap: 32px;
-    flex-wrap: wrap;
-    padding-top: 28px;
-    border-top: 1px solid var(--border-soft);
-  }
-  .hero-stats .stat b{
-    display:block;
-    font-family: var(--font-display);
-    font-size: 22px;
-    color: var(--text-primary);
-  }
-  .hero-stats .stat span{
-    font-size: 13px;
-    color: var(--text-muted);
-  }
-
-  /* workstation photo — right side of hero */
   .hero-visual{
     position: relative;
     animation: floaty 6s ease-in-out infinite;
   }
-  @keyframes floaty{
-    0%,100%{ transform: translateY(0); }
-    50%{ transform: translateY(-10px); }
-  }
-  .hero-visual img{
+  @keyframes floaty{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-10px); } }
+
+  .hero-carousel{
+    position: relative;
     width: 100%;
     height: 460px;
-    object-fit: cover;
     border-radius: var(--radius-lg);
+    overflow: hidden;
     border: 1px solid var(--border);
     box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
+    background: var(--bg-card);
   }
+  .hero-carousel img{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.1s ease;
+  }
+  .hero-carousel img.active{ opacity: 1; }
+
+  .hero-carousel-dots{
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    z-index: 2;
+    display: flex;
+    gap: 6px;
+  }
+  .hero-carousel-dots span{
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(231,236,243,0.35);
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  .hero-carousel-dots span.active{ background: var(--accent); transform: scale(1.3); }
+
   .hero-visual-badge{
     position: absolute;
     left: 20px;
     bottom: 20px;
+    z-index: 2;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -450,34 +346,14 @@
     font-size: 12.5px;
     color: var(--text-primary);
   }
-  .hero-visual-badge .pulse{
-    width:7px; height:7px; border-radius:50%;
-    background: var(--accent-2);
-    animation: pulse 1.6s ease-in-out infinite;
-  }
+  .hero-visual-badge .pulse{ width:7px; height:7px; border-radius:50%; background: var(--accent-2); animation: pulse 1.6s ease-in-out infinite; }
 
-  /* ============================
-     GENERIC SECTION SPACING
-     ============================ */
   .section{ padding: 96px 0; }
   .section.tight{ padding: 72px 0; }
   .section-alt{ background: var(--bg-raised); border-top:1px solid var(--border-soft); border-bottom:1px solid var(--border-soft); }
 
-  /* ============================
-     ABOUT
-     ============================ */
-  .about-grid{
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items:start;
-  }
-
-  .about-copy p{
-    color: var(--text-secondary);
-    margin-bottom: 18px;
-    font-size: 15.5px;
-  }
+  .about-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items:start; }
+  .about-copy p{ color: var(--text-secondary); margin-bottom: 18px; font-size: 15.5px; }
 
   .code-block{
     background: var(--bg-card);
@@ -491,11 +367,7 @@
   .code-block .k{ color: var(--accent-2); }
   .code-block .s{ color: var(--accent); }
 
-  .highlights{
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
+  .highlights{ display:grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
   .highlight-card{
     background: var(--bg-card);
@@ -504,22 +376,12 @@
     padding: 20px;
     transition: border-color .2s ease, transform .2s ease;
   }
-  .highlight-card:hover{
-    border-color: var(--accent-2);
-    transform: translateY(-3px);
-  }
+  .highlight-card:hover{ border-color: var(--accent-2); transform: translateY(-3px); }
   .highlight-card .icon{ font-size: 22px; margin-bottom: 10px; display:block; }
   .highlight-card h3{ font-size: 15px; margin-bottom: 6px; }
   .highlight-card p{ font-size: 13.5px; color: var(--text-secondary); }
 
-  /* ============================
-     SERVICES
-     ============================ */
-  .services-grid{
-    display:grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 22px;
-  }
+  .services-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
 
   .service-card{
     position: relative;
@@ -529,11 +391,7 @@
     padding: 30px 26px;
     transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
   }
-  .service-card:hover{
-    transform: translateY(-6px);
-    border-color: var(--accent);
-    box-shadow: 0 20px 40px -20px rgba(242,184,75,0.25);
-  }
+  .service-card:hover{ transform: translateY(-6px); border-color: var(--accent); box-shadow: 0 20px 40px -20px rgba(242,184,75,0.25); }
 
   .service-icon{
     width: 46px; height: 46px;
@@ -544,15 +402,8 @@
   }
   .service-icon svg{ width: 24px; height: 24px; stroke: var(--accent-2); }
 
-  .service-card h3{
-    font-size: 19px;
-    margin-bottom: 10px;
-  }
-  .service-card p{
-    color: var(--text-secondary);
-    font-size: 14.5px;
-    margin-bottom: 16px;
-  }
+  .service-card h3{ font-size: 19px; margin-bottom: 10px; }
+  .service-card p{ color: var(--text-secondary); font-size: 14.5px; margin-bottom: 16px; }
 
   .service-tag{
     font-family: var(--font-mono);
@@ -564,40 +415,14 @@
     border-radius: 6px;
   }
 
-  /* process strip */
-  .process{
-    display:flex;
-    gap: 0;
-    margin-top: 72px;
-    border-top: 1px solid var(--border-soft);
-    padding-top: 40px;
-    flex-wrap: wrap;
-  }
-  .process-step{
-    flex:1;
-    min-width: 180px;
-    padding: 0 20px;
-    border-left: 1px solid var(--border-soft);
-  }
+  .process{ display:flex; gap: 0; margin-top: 72px; border-top: 1px solid var(--border-soft); padding-top: 40px; flex-wrap: wrap; }
+  .process-step{ flex:1; min-width: 180px; padding: 0 20px; border-left: 1px solid var(--border-soft); }
   .process-step:first-child{ border-left:none; padding-left:0; }
-  .process-step .tag{
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-bottom: 8px;
-    display:block;
-  }
+  .process-step .tag{ font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); margin-bottom: 8px; display:block; }
   .process-step h4{ font-size: 15px; margin-bottom: 6px; font-family: var(--font-display); }
   .process-step p{ font-size: 13.5px; color: var(--text-secondary); }
 
-  /* ============================
-     PROJECTS
-     ============================ */
-  .project-grid{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
-  }
+  .project-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
 
   .project-card{
     background: var(--bg-card);
@@ -608,66 +433,35 @@
     display: flex;
     flex-direction: column;
   }
-  .project-card:hover{
-    transform: translateY(-6px);
-    border-color: var(--accent-2);
-    box-shadow: 0 20px 40px -20px rgba(79,209,197,0.22);
-  }
+  .project-card:hover{ transform: translateY(-6px); border-color: var(--accent-2); box-shadow: 0 20px 40px -20px rgba(79,209,197,0.22); }
 
-  .project-image{
-    position: relative;
-    height: 170px;
-    overflow: hidden;
-    background: var(--bg-raised);
-  }
-  .project-image img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform .4s ease;
-  }
-  .project-card:hover .project-image img{
-    transform: scale(1.06);
-  }
-  .project-placeholder-badge{
+  .project-image{ position: relative; height: 170px; overflow: hidden; background: var(--bg-raised); }
+  .project-image img{ width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .4s ease; }
+  .project-card:hover .project-image img{ transform: scale(1.06); }
+
+  .project-live-badge{
     position: absolute;
     top: 12px;
     right: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
     font-family: var(--font-mono);
     font-size: 10.5px;
     color: var(--text-primary);
     background: rgba(10,14,23,0.75);
     border: 1px solid var(--border);
-    padding: 4px 9px;
+    padding: 4px 10px;
     border-radius: 999px;
     backdrop-filter: blur(4px);
   }
+  .project-live-badge .pulse{ width:6px; height:6px; border-radius:50%; background: var(--accent-2); animation: pulse 1.6s ease-in-out infinite; }
 
-  .project-body{
-    padding: 22px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-  .project-body h3{
-    font-size: 17px;
-    margin: 10px 0 8px;
-  }
-  .project-body p{
-    color: var(--text-secondary);
-    font-size: 13.5px;
-    margin-bottom: 18px;
-    flex: 1;
-  }
+  .project-body{ padding: 22px; display: flex; flex-direction: column; flex: 1; }
+  .project-body h3{ font-size: 17px; margin: 10px 0 8px; }
+  .project-body p{ color: var(--text-secondary); font-size: 13.5px; margin-bottom: 18px; flex: 1; }
 
-  /* ============================
-     CONTACT
-     ============================ */
-  .contact-grid{
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-  }
+  .contact-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 
   .contact-card{
     background: var(--bg-card);
@@ -682,29 +476,14 @@
   }
   .contact-card:hover{ transform: translateY(-4px); }
 
-  .contact-card .icon-row{
-    display:flex;
-    align-items:center;
-    justify-content: space-between;
-    margin-bottom: 22px;
-  }
+  .contact-card .icon-row{ display:flex; align-items:center; justify-content: space-between; margin-bottom: 22px; }
   .contact-card .icon-row svg{ width:26px; height:26px; stroke: var(--accent); }
 
   .contact-card h3{ font-size: 17px; margin-bottom: 6px; }
   .contact-card p{ color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; }
 
-  .contact-info{
-    grid-column: 1 / -1;
-    display:grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-top: 8px;
-  }
-  .info-item{
-    display:flex;
-    gap: 14px;
-    align-items:flex-start;
-  }
+  .contact-info{ grid-column: 1 / -1; display:grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 8px; }
+  .info-item{ display:flex; gap: 14px; align-items:flex-start; }
   .info-item svg{ width:20px; height:20px; stroke: var(--accent-2); flex-shrink:0; margin-top:2px; }
   .info-item h4{ font-size: 13px; color: var(--text-muted); font-weight:500; margin-bottom:4px; text-transform: uppercase; letter-spacing: 0.04em; }
   .info-item p{ font-size: 14.5px; color: var(--text-primary); }
@@ -721,51 +500,14 @@
     border-radius: 999px;
     margin-bottom: 24px;
   }
-  .availability-badge .pulse{
-    width:7px; height:7px; border-radius:50%;
-    background: var(--accent-2);
-    animation: pulse 1.6s ease-in-out infinite;
-  }
-  @keyframes pulse{
-    0%,100%{ box-shadow: 0 0 0 0 rgba(79,209,197,0.5); }
-    50%{ box-shadow: 0 0 0 6px rgba(79,209,197,0); }
-  }
+  .availability-badge .pulse{ width:7px; height:7px; border-radius:50%; background: var(--accent-2); animation: pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse{ 0%,100%{ box-shadow: 0 0 0 0 rgba(79,209,197,0.5); } 50%{ box-shadow: 0 0 0 6px rgba(79,209,197,0); } }
 
-  /* ============================
-     FOOTER — always visible
-     ============================ */
-  footer{
-    border-top: 1px solid var(--border-soft);
-    background: var(--bg-raised);
-    padding: 48px 0 28px;
-  }
-  .footer-grid{
-    display:grid;
-    grid-template-columns: 1.4fr 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 36px;
-  }
-  .footer-brand p{
-    color: var(--text-secondary);
-    font-size: 14px;
-    margin-top: 12px;
-    max-width: 320px;
-  }
-  .footer-col h4{
-    font-family: var(--font-mono);
-    font-size: 12.5px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 14px;
-  }
-  .footer-col a, .footer-col p{
-    display:block;
-    font-size: 14px;
-    color: var(--text-secondary);
-    margin-bottom: 10px;
-    transition: color .2s ease;
-  }
+  footer{ border-top: 1px solid var(--border-soft); background: var(--bg-raised); padding: 48px 0 28px; }
+  .footer-grid{ display:grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; margin-bottom: 36px; }
+  .footer-brand p{ color: var(--text-secondary); font-size: 14px; margin-top: 12px; max-width: 320px; }
+  .footer-col h4{ font-family: var(--font-mono); font-size: 12.5px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 14px; }
+  .footer-col a, .footer-col p{ display:block; font-size: 14px; color: var(--text-secondary); margin-bottom: 10px; transition: color .2s ease; }
   .footer-col a:hover{ color: var(--accent); }
 
   .footer-bottom{
@@ -781,13 +523,10 @@
   }
   .footer-bottom .mono{ color: var(--text-muted); }
 
-  /* ============================
-     RESPONSIVE
-     ============================ */
   @media (max-width: 860px){
     .hero-inner{ grid-template-columns: 1fr; }
-    .hero-visual{ order: -1; max-width: 480px; margin: 0 auto; }
-    .hero-visual img{ height: 320px; }
+    .hero-visual{ max-width: 480px; margin: 0 auto; }
+    .hero-carousel{ height: 320px; }
     .hero-content{ max-width: 100%; }
     .about-grid{ grid-template-columns: 1fr; }
     .services-grid{ grid-template-columns: 1fr; }
@@ -800,7 +539,6 @@
     .process-step:first-child{ border-top:none; padding-top:0; }
   }
 
-  /* Mega menu is a desktop-only affordance — never shown on small / mobile displays */
   @media (max-width: 760px){
     nav.links{ display:none; }
     .burger{ display:flex; }
@@ -834,9 +572,6 @@
 </head>
 <body>
 
-<!-- ============================
-     NAVIGATION
-     ============================ -->
 <header class="nav">
   <div class="nav-inner">
     <div class="logo" data-nav="home">
@@ -848,7 +583,6 @@
       <a data-nav="home" class="active">Home</a>
       <a data-nav="about">About</a>
 
-      <!-- Services nav item with mega menu (desktop only, see media query) -->
       <div class="nav-item-mega">
         <a data-nav="services">Services</a>
         <div class="mega-menu">
@@ -902,9 +636,7 @@
 
 <main>
 
-  <!-- ============================
-       HOME
-       ============================ -->
+  <!-- HOME -->
   <section class="page active" id="page-home">
     <div class="hero">
       <div class="hero-bg" role="img" aria-label="Close-up of code on a screen"></div>
@@ -925,13 +657,19 @@
         </div>
 
         <div class="hero-visual">
-          <img src="https://images.unsplash.com/photo-1623281185000-6940e5347d2e?w=900&h=1000&fit=crop&q=80" alt="Clean dual-monitor developer workstation with code on screen">
+          <div class="hero-carousel" id="heroCarousel">
+            <img class="active" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=900&h=1000&fit=crop&q=80" alt="Developer writing code on a laptop">
+            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=900&h=1000&fit=crop&q=80" alt="Workspace with code on a monitor">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=900&h=1000&fit=crop&q=80" alt="Close-up of source code on screen">
+            <div class="hero-carousel-dots" id="heroCarouselDots">
+              <span class="active"></span><span></span><span></span>
+            </div>
+          </div>
           <div class="hero-visual-badge"><span class="pulse"></span> Available for new projects</div>
         </div>
       </div>
     </div>
 
-    <!-- quick services preview strip -->
     <div class="section tight">
       <div class="wrap">
         <div class="eyebrow">what I do</div>
@@ -947,9 +685,7 @@
     </div>
   </section>
 
-  <!-- ============================
-       ABOUT
-       ============================ -->
+  <!-- ABOUT -->
   <section class="page" id="page-about">
     <div class="section">
       <div class="wrap">
@@ -986,9 +722,7 @@
     </div>
   </section>
 
-  <!-- ============================
-       SERVICES
-       ============================ -->
+  <!-- SERVICES -->
   <section class="page" id="page-services">
     <div class="section">
       <div class="wrap">
@@ -1062,54 +796,52 @@
     </div>
   </section>
 
-  <!-- ============================
-       PROJECTS
-       ============================ -->
+  <!-- PROJECTS -->
   <section class="page" id="page-projects">
     <div class="section">
       <div class="wrap">
         <div class="eyebrow">projects</div>
         <h2>Selected work</h2>
-        <p class="section-lede">A few examples of the kind of work I do. Placeholders for now — real case studies coming soon.</p>
+        <p class="section-lede">Live case studies from recent client work — click through to see any of them in production.</p>
 
         <div class="project-grid">
 
           <div class="project-card">
             <div class="project-image">
-              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=340&fit=crop&q=80" alt="E-commerce web app placeholder">
-              <span class="project-placeholder-badge">Placeholder</span>
+              <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fhiregrid.vercel.app%2F?w=500&h=340" alt="HireGrid job application tracker dashboard">
+              <span class="project-live-badge"><span class="pulse"></span>Live</span>
             </div>
             <div class="project-body">
               <span class="service-tag">Web App</span>
-              <h3>Retail storefront platform</h3>
-              <p>A fast, mobile-first e-commerce build with custom checkout flow and inventory sync — case study coming soon.</p>
-              <a class="btn btn-outline btn-sm btn-block" href="javascript:void(0)">View project</a>
+              <h3>HireGrid</h3>
+              <p>A job-search tracker that helps candidates log every application in one place — status, salary expectations, location, contacts, and notes — so nothing falls through the cracks.</p>
+              <a class="btn btn-outline btn-sm btn-block" href="https://hiregrid.vercel.app" target="_blank" rel="noopener">View project</a>
             </div>
           </div>
 
           <div class="project-card">
             <div class="project-image">
-              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=340&fit=crop&q=80" alt="Internal dashboard software placeholder">
-              <span class="project-placeholder-badge">Placeholder</span>
+              <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fblessedbeautypalor.netlify.app%2F?w=500&h=340" alt="Blessed Beauty Parlor website homepage">
+              <span class="project-live-badge"><span class="pulse"></span>Live</span>
             </div>
             <div class="project-body">
-              <span class="service-tag">Software</span>
-              <h3>Operations dashboard</h3>
-              <p>An internal tool for tracking orders and staff workflows, replacing a stack of spreadsheets — case study coming soon.</p>
-              <a class="btn btn-outline btn-sm btn-block" href="javascript:void(0)">View project</a>
+              <span class="service-tag">Web Design</span>
+              <h3>Blessed Beauty Parlor</h3>
+              <p>A warm, editorial-style site for a Rongai beauty studio covering hairdressing, nails, makeup, and massage — built to drive bookings with a clear call-to-book and services overview.</p>
+              <a class="btn btn-outline btn-sm btn-block" href="https://blessedbeautypalor.netlify.app" target="_blank" rel="noopener">View project</a>
             </div>
           </div>
 
           <div class="project-card">
             <div class="project-image">
-              <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=500&h=340&fit=crop&q=80" alt="AI chat assistant placeholder">
-              <span class="project-placeholder-badge">Placeholder</span>
+              <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fsignaturedentalclinic.vercel.app%2F?w=500&h=340" alt="Signature Dental Care clinic website homepage">
+              <span class="project-live-badge"><span class="pulse"></span>Live</span>
             </div>
             <div class="project-body">
-              <span class="service-tag">AI Integration</span>
-              <h3>Support chat assistant</h3>
-              <p>An AI-powered assistant embedded in a SaaS product to handle common support questions — case study coming soon.</p>
-              <a class="btn btn-outline btn-sm btn-block" href="javascript:void(0)">View project</a>
+              <span class="service-tag">Web Design</span>
+              <h3>Signature Dental Care</h3>
+              <p>A clean, trust-building site for a Parklands dental clinic, laying out care categories from children to adults and highlighting same-day emergency appointments and booking.</p>
+              <a class="btn btn-outline btn-sm btn-block" href="https://signaturedentalclinic.vercel.app" target="_blank" rel="noopener">View project</a>
             </div>
           </div>
 
@@ -1118,9 +850,7 @@
     </div>
   </section>
 
-  <!-- ============================
-       CONTACT
-       ============================ -->
+  <!-- CONTACT -->
   <section class="page" id="page-contact">
     <div class="section">
       <div class="wrap">
@@ -1173,9 +903,6 @@
 
 </main>
 
-<!-- ============================
-     FOOTER — always visible
-     ============================ -->
 <footer>
   <div class="wrap">
     <div class="footer-grid">
@@ -1209,53 +936,35 @@
 (function(){
   "use strict";
 
-  // ============================
-  // CONFIG — page routes
-  // ============================
   var pages = ["home", "about", "services", "projects", "contact"];
   var pathMap = { "home": "/", "about": "/about", "services": "/services", "projects": "/projects", "contact": "/contact" };
 
   var mainNavLinks = document.querySelectorAll('.links > a[data-nav], .links > .nav-item-mega > a[data-nav]');
   var allNavTriggers = document.querySelectorAll('[data-nav]');
 
-  // ============================
-  // SHOW PAGE — hides all, shows one, updates active nav state
-  // ============================
   function showPage(name, pushToHistory){
     if(pages.indexOf(name) === -1){ name = "home"; }
 
-    // toggle page sections
     pages.forEach(function(p){
       var el = document.getElementById('page-' + p);
       if(el){ el.classList.toggle('active', p === name); }
     });
 
-    // toggle active nav link styling (top nav only)
     mainNavLinks.forEach(function(link){
       link.classList.toggle('active', link.getAttribute('data-nav') === name);
     });
 
-    // close mobile menu after navigating
     document.getElementById('navLinks').classList.remove('mobile-open');
-
-    // scroll to top on page change
     window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
 
-    // attempt to update the URL — wrapped so this works even without a real server
     if(pushToHistory){
       try{
         var path = pathMap[name] || '/';
         window.history.pushState({ page: name }, '', path);
-      }catch(e){
-        // pushState unavailable (e.g. local file preview) — silently continue,
-        // page switching still works without URL changes
-      }
+      }catch(e){}
     }
   }
 
-  // ============================
-  // NAV CLICK HANDLERS
-  // ============================
   allNavTriggers.forEach(function(trigger){
     trigger.addEventListener('click', function(e){
       e.preventDefault();
@@ -1264,17 +973,11 @@
     });
   });
 
-  // ============================
-  // BROWSER BACK / FORWARD SUPPORT
-  // ============================
   window.addEventListener('popstate', function(e){
     var name = (e.state && e.state.page) ? e.state.page : detectPageFromPath();
     showPage(name, false);
   });
 
-  // ============================
-  // INITIAL LOAD — detect page from URL pathname if possible
-  // ============================
   function detectPageFromPath(){
     try{
       var path = window.location.pathname.replace(/\/+$/, '') || '/';
@@ -1282,26 +985,20 @@
         var p = pages[i];
         if(pathMap[p] === path){ return p; }
       }
-      // also match bare names like /about.html or /about/
       var clean = path.replace(/^\//, '').replace(/\.html$/, '');
       if(pages.indexOf(clean) !== -1){ return clean; }
       return 'home';
     }catch(e){
-      // pathname unavailable — default to home
       return 'home';
     }
   }
 
   showPage(detectPageFromPath(), false);
 
-  // ============================
-  // MOBILE MENU TOGGLE
-  // ============================
   document.getElementById('burgerBtn').addEventListener('click', function(){
     document.getElementById('navLinks').classList.toggle('mobile-open');
   });
 
-  // show "Call now" button on nav only once scrolled a bit (desktop nicety)
   var callBtn = document.getElementById('navCallBtn');
   window.addEventListener('scroll', function(){
     if(window.innerWidth > 760){
@@ -1309,8 +1006,44 @@
     }
   });
 
-  // footer year
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // HERO IMAGE CAROUSEL — autoplay crossfade
+  (function initHeroCarousel(){
+    var carousel = document.getElementById('heroCarousel');
+    if(!carousel) return;
+    var slides = carousel.querySelectorAll('img');
+    var dots = document.querySelectorAll('#heroCarouselDots span');
+    var current = 0;
+    var intervalMs = 4200;
+
+    function goTo(index){
+      slides[current].classList.remove('active');
+      dots[current] && dots[current].classList.remove('active');
+      current = index % slides.length;
+      slides[current].classList.add('active');
+      dots[current] && dots[current].classList.add('active');
+    }
+
+    var timer = setInterval(function(){ goTo(current + 1); }, intervalMs);
+
+    dots.forEach(function(dot, i){
+      dot.style.cursor = 'pointer';
+      dot.addEventListener('click', function(){
+        clearInterval(timer);
+        goTo(i);
+        timer = setInterval(function(){ goTo(current + 1); }, intervalMs);
+      });
+    });
+
+    document.addEventListener('visibilitychange', function(){
+      if(document.hidden){
+        clearInterval(timer);
+      } else {
+        timer = setInterval(function(){ goTo(current + 1); }, intervalMs);
+      }
+    });
+  })();
 
 })();
 </script>
